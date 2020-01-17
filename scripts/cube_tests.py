@@ -71,7 +71,7 @@ def double_pounch(Ncr, D, h, p=37.5):
 
 
 if __name__ == "__main__":
-    input_file = r'C:\Code\myRepos\compas_IoT\data\Francesco_Compressive_Strength.txt'
+    input_file = r'C:\Code\myRepos\compas_testing\data\Francesco_Compressive_Strength.txt'
     [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='compression')
     # input_file = r'C:\Code\myRepos\compas_IoT\data\Francesco_Double_Punch.txt'
     # [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='double punch')

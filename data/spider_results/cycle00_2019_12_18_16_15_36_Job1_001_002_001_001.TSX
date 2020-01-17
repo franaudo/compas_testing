@@ -1,0 +1,22 @@
+CATMAN TEST FILE
+PATH=C:\00_projects\2019_Francesco_ARCH
+Job name=Job1
+Data file with path=C:\00_projects\2019_Francesco_ARCH\cycle00_2019_12_18_16_15_36_Job1_001_002_001_001.txt
+Data file=cycle00_2019_12_18_16_15_36_Job1_001_002_001_001.txt
+File comment=
+Operator=
+Department=
+Comment=
+Default sample rate=2 Hz
+Slow sample rate=5 Hz
+Fast sample rate=2400 Hz
+Number of samples default sample rate=2776
+Number of samples slow sample rate=0
+Number of samples fast sample rate=0
+Start mode=Manual
+Start time=18.12.2019 17:46:03
+Stop mode=Manual
+Stop time=18.12.2019 18:09:12
+catmanEasy/AP version=4.1.2.7
+Numerical precision=8 Byte Float
+DATAFILE=C:\00_projects\2019_Francesco_ARCH\cycle00_2019_12_18_16_15_36_Job1_001_002_001_001.txt
