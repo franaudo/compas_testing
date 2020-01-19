@@ -10,7 +10,7 @@ import csv
 
 HERE = os.path.dirname(__file__)
 
-HOME = os.path.abspath(os.path.join(HERE, "../../"))
+HOME = os.path.abspath(os.path.join(HERE, "../"))
 DATA = os.path.abspath(os.path.join(HOME, "data"))
 DOCS = os.path.abspath(os.path.join(HOME, "docs"))
 TEMP = os.path.abspath(os.path.join(HOME, "temp"))
@@ -71,9 +71,9 @@ def double_pounch(Ncr, D, h, p=37.5):
 
 
 if __name__ == "__main__":
-    input_file = r'C:\Code\myRepos\compas_testing\data\Francesco_Compressive_Strength.txt'
+    input_file = DATA + '\\cubes_results\\Compressive_Strength.txt'
     [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='compression')
-    # input_file = r'C:\Code\myRepos\compas_IoT\data\Francesco_Double_Punch.txt'
+    # input_file = DATA + '\\cubes_results\\Double_Punch.txt'
     # [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='double punch')
     # # print(my_pd_data)
     # print(my_pd_data)

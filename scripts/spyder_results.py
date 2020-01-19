@@ -11,7 +11,7 @@ import csv
 
 HERE = os.path.dirname(__file__)
 
-HOME = os.path.abspath(os.path.join(HERE, "../../"))
+HOME = os.path.abspath(os.path.join(HERE, "../"))
 DATA = os.path.abspath(os.path.join(HOME, "data"))
 DOCS = os.path.abspath(os.path.join(HOME, "docs"))
 TEMP = os.path.abspath(os.path.join(HOME, "temp"))
@@ -24,7 +24,6 @@ def parse_results(input_file):
     data = []
     pd_data = []
     info = []
-    test_summary = []
     # Read the txt file and split it into separate tests
     with open(input_file, newline='') as f:
             r = csv.reader(f, delimiter='\t')
@@ -62,7 +61,7 @@ def plot_forces(pdf):
 
     pdf.plot(x ='Time  1 - default sample rate CH=1', y='Total Applied Force', ax=axs[1], kind = 'line')
     pdf.plot(x ='Time  1 - default sample rate CH=1', y='Total Ties Tension', ax=axs[1], kind = 'line')
-    axs[1].set_title('Total quantites')
+    axs[1].set_title('Total Forces')
     axs[1].set_xlabel('Time [s]')
     axs[1].set_ylabel('Force [kN]')
 
@@ -87,7 +86,7 @@ def plot_deformations(pdf):
     pdf.plot(x ='Time  1 - default sample rate CH=1', y='LVDT__mw CH=12', ax=axs[0], kind = 'line')
     pdf.plot(x ='Time  1 - default sample rate CH=1', y='LVDT__se CH=13', ax=axs[0], kind = 'line')
     pdf.plot(x ='Time  1 - default sample rate CH=1', y='LVDT__sw CH=14', ax=axs[0], kind = 'line')
-    axs[0].set_title('LVDTS Response')
+    axs[0].set_title('LVDT Response')
     axs[0].set_xlabel('Time [s]')
     axs[0].set_ylabel('Displacement [mm]')
 
@@ -100,8 +99,8 @@ def plot_deformations(pdf):
     axs[1].set_title('Force - Displacement')
     axs[1].set_xlabel('Displacements [mm]')
     axs[1].set_ylabel('Total Applied Force [kN]')
-    axs[1].set_ylim(-7,0)
-    axs[1].set_xlim(-35,0)
+    # axs[1].set_ylim(-7,0)
+    # axs[1].set_xlim(-35,0)
     axs[1].invert_xaxis()
     axs[1].invert_yaxis()
     
@@ -109,8 +108,9 @@ def plot_deformations(pdf):
 
 
 if __name__ == "__main__":
-    input_file = r'C:\Code\myRepos\compas_testing\data\spider_results\cycle01_2019_12_18_16_15_36_Job1_001_002_001_001_001.txt'
-    
+    input_file = DATA + '\\spider_results\\cycle00_2019_12_18_16_15_36_Job1_001_002_001_001.txt'
+    # input_file = DATA + '\\spider_results\\cycle01_2019_12_18_16_15_36_Job1_001_002_001_001_001.txt'
+
     [info, data, pdf] = parse_results(input_file)
     pdf['Total Applied Force'] = pdf['Force_south CH=3'] + pdf['Force_south CH=3']
     beam_weight = -0.79
