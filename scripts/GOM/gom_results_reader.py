@@ -16,9 +16,9 @@ DOCS = os.path.abspath(os.path.join(HOME, "docs"))
 TEMP = os.path.abspath(os.path.join(HOME, "temp"))
 
 
-def myround(x, base):
-
-    """Custom multiple rounding function.
+def base_round(x, base):
+    """
+    Custom multiple rounding function.
 
     Parameters
     ----------
@@ -33,21 +33,23 @@ def myround(x, base):
     return base * round(x/base)
 
 
-def results_per_stage(input_file, tollerance=60):
-
-    """parse the input file into a list per point and per stage and convert to float 
+def results_per_stage(input_file, tollerance=50):
+    """
+    Converts the text results to a list and computes the geometric keys of the points within a specific tollerance.
 
     Parameters
     ----------
     input_file : .txt file 
-        File contains data exported from gom : analysis of displacement of points placed on an element submitted to a bending test.
-        Each row describes the points in successive stages as follows : Stage|Stagetime|ID/Name| X| Y| Z| dX| dY| dZ|d
+        File containing the data exported from GOM PONTOS.
+        Each row describes the points in successive stages as follows : 
+        Stage | Stage time | ID/Name | X | Y | Z | dX | dY | dZ | d
+    
+    tollerance : maximum distance where to look for corresponding points
 
     Returns
     -------
     list : a list of lists
         each list describes a point at a given stage as follows : [Stage, time, X, Y, Z, gkey]
-
     """
 
     results = []
@@ -57,18 +59,18 @@ def results_per_stage(input_file, tollerance=60):
             sl = elem[1:3] + elem[4:7]
             fl = list(float(sl[i]) for i in range(len(sl)))
             # add geometric key
-            fl.append(str(myround(fl[2],base=tollerance))+
-                    str(myround(fl[3],base=tollerance))+
-                    str(myround(fl[4],base=tollerance)))
+            fl.append(str(base_round(fl[2],base=tollerance))+
+                    str(base_round(fl[3],base=tollerance))+
+                    str(base_round(fl[4],base=tollerance)))
             results.append(fl)
      
     return results
 
 
 def group_per_stage(results_list):
-
     """
-    Groups the results in a dictionary where the keys are the stage numbers and the values are the point coordinates
+    Groups the results in a dictionary where the keys are the stage numbers and the values are 
+    the coordinates of each point.
 
     Parameters
     ----------
@@ -77,8 +79,7 @@ def group_per_stage(results_list):
 
     Returns
     -------
-    dict : a dictionary
-        each element in the dictionary is described as follows : 
+    dict : a dictionary where: 
         key : int - Stage number 
         value : (sequence) – A sequence of locations in three-dimensional space [X, Y, Z]
     """
@@ -95,10 +96,9 @@ def group_per_stage(results_list):
 
 
 def group_per_gkey(results_list):
-   
-
     """
-    Groups the results in a dictionary where the keys are the geometric keys and the values are the point coordinates
+    Groups the results in a dictionary where the keys are the geometric keys and the values are 
+    the point coordinates at each stage.
 
     Parameters
     ----------
@@ -125,20 +125,10 @@ def group_per_gkey(results_list):
 
 
 def find_points (points_clouds, num_stages, tollerance=30):
-
-
-    '''
-    finds matching points in pairs of neighbouring stages. 
-    When no matching point is found, blank points are added.
-    '''
     
     """
-    Create a dictionary describing the history of a point through successive stages:
-    
-    The browsed lists contain the coordinates of many different points at the same stage.
-    Find corresponding point in pairs of neighbouring stages and group them into point_history_lists.
-    Corresponding points are identified by searching for the two closest points in neighbouring stages.
-    When no matching point is found, blank points are added.
+    Finds matching points in pairs of neighbouring stages using compas point_in_cloud function. 
+    When no matching point is found within the tollerance, blank points (0.0, (0.0, 0.0, 0.0), 0.0) are added.
 
     Parameters
     ----------
@@ -146,9 +136,9 @@ def find_points (points_clouds, num_stages, tollerance=30):
         key : int - Stage number 
         value : (sequence) – A sequence of locations in three-dimensional space [X, Y, Z] - with a common stage
 
-    num_stages : int - total number of stages
+    num_stages : int - number of stages to consider
 
-    tolerance : int - distance between two neighbouring points
+    tolerance : int - max distance between two neighbouring points
 
     Returns
     -------
@@ -173,18 +163,9 @@ def find_points (points_clouds, num_stages, tollerance=30):
 
 
 def find_points_0 (points_clouds, num_stages, start_stage=0, tollerance=50):
-    '''
-    finds matching points between one stage and the others. 
-    When no matching point is found, blank points are added.
-    '''
-
     """
-    Create a dictionary describing the history of a point through successive stages:
-    
-    The browsed lists contain the coordinates of many different points at the same stage.
-    Find corresponding points between a starting stage and following stages, and group them into point_history_lists. 
-    Corresponding points are identified by searching for the closest points in different stages.
-    When no matching point is found, blank points are added.
+    Finds matching points between one stage and the others using compas point_in_cloud function. 
+    When no matching point is found within the tollerance, blank points (0.0, (0.0, 0.0, 0.0), 0.0) are added.
 
     Parameters
     ----------
@@ -192,11 +173,11 @@ def find_points_0 (points_clouds, num_stages, start_stage=0, tollerance=50):
         key : int - Stage number 
         value : (sequence) – A sequence of locations in three-dimensional space [X, Y, Z] - for a common stage
 
-    num_stages : int - total number of stages
+    num_stages : int - number of stages to consider
  
     start_stage : int - stage to find matching points from
 
-    tolerance : int - distance between two neighbouring points
+    tolerance : int - max distance between two neighbouring points
 
     Returns
     -------
@@ -227,10 +208,8 @@ def find_points_0 (points_clouds, num_stages, start_stage=0, tollerance=50):
 
 
 def split_points_history(points_history):
-
-
     """
-    Split the points history dictionary into two separate dictionaries describing the point coordinates and the point displacements individually.
+    Splits the points history dictionary into two separate dictionaries describing the point coordinates and the point displacements individually.
 
     Parameters
     ----------
@@ -255,8 +234,7 @@ def split_points_history(points_history):
         value : list - a list of distances between the reference point and its location in three-dimensional space throughout the stages 
 
     """
-
-
+    
     points_history_coord={} # coordinates of the point per stage 
     points_history_disp={} # displacement of the point at stage
     for key, value in points_history.items():
@@ -272,9 +250,8 @@ def split_points_history(points_history):
 
 
 def history_to_json(points_history, destination):
-
     """
-    Convert the point history dictionary into a json file and save it in a folder.
+    Converts the point history dictionary into a json file and save it in a folder.
 
     Parameters
     ----------
@@ -298,23 +275,23 @@ def history_to_json(points_history, destination):
 if __name__ == "__main__":    
 
     # import table describing the locations of a series of points in 3D space, at different stages  
-    input_file = '/Users/fentons/Code/Repositories/gom_postprocess/data/gom_results.txt'
+    input_file = DATA + '/GOM_results/gom_export.txt'
     
     # create sublists per stages
     results = results_per_stage(input_file)
     
-    #create a dictionnary per stage with indivuidual keys for points
+    # create a dictionnary per stage with indivuidual keys for points
     points_clouds = group_per_stage(results)
     
-    #find total number of stages
+    # find total number of stages
     num_stages = len(points_clouds)
     
-    #create a dictionnary per point describing the point locations in space throughout the stages
+    # create a dictionnary per point describing the point locations in space throughout the stages
     points_history = find_points_0(points_clouds, num_stages, tollerance=50)
     
-    #split point_history data into point coordinates and displacements
+    # split point_history data into point coordinates and displacements
     histories = split_points_history(points_history)
 
-    #export point coordinates and point displacements into separate json files
-    history_to_json(histories, '/Users/fentons/Code/Repositories/gom_postprocess/data')
+    # export point coordinates and point displacements into separate json files
+    history_to_json(histories, DATA + '/GOM_output')
 
