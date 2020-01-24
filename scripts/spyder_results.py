@@ -1,13 +1,12 @@
 # scripts to post-process the results form the cube/cylinder concrete tests
 import os
 import math
+import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
 sns.set_palette(sns.color_palette("husl", 8))
-
-import csv
 
 HERE = os.path.dirname(__file__)
 
@@ -18,9 +17,10 @@ TEMP = os.path.abspath(os.path.join(HOME, "temp"))
 
 
 def parse_results(input_file):
-    '''
+    """
     parse the .txt result file and format it
-    '''
+    """
+
     data = []
     pd_data = []
     info = []
@@ -38,7 +38,7 @@ def parse_results(input_file):
                 if not l:
                     continue
                 data.append(l)
-    
+
     # Remove last empty column
     for l in range(len(data)):
         data[l].pop()
@@ -47,8 +47,9 @@ def parse_results(input_file):
     # Set the headers ad convert to pandas dataframe
     headers = info[6]
     pd_data = pd.DataFrame(data=data, columns=headers)
-    
+
     return [info, data, pd_data]
+
 
 def plot_forces(pdf):
     fig, axs = plt.subplots(3, 1, constrained_layout=True)
@@ -75,6 +76,7 @@ def plot_forces(pdf):
 
     plt.show()
 
+
 def plot_deformations(pdf):
 
     fig, axs = plt.subplots(2, 1, constrained_layout=True)
@@ -95,7 +97,7 @@ def plot_deformations(pdf):
     pdf.plot(y='Total Applied Force', x='LVDT__me CH=11', ax=axs[1], kind = 'line')
     pdf.plot(y='Total Applied Force', x='LVDT__mw CH=12', ax=axs[1], kind = 'line')
     pdf.plot(y='Total Applied Force', x='LVDT__se CH=13', ax=axs[1], kind = 'line')
-    pdf.plot(y='Total Applied Force', x='LVDT__sw CH=14', ax=axs[1], kind = 'line')    
+    pdf.plot(y='Total Applied Force', x='LVDT__sw CH=14', ax=axs[1], kind = 'line')
     axs[1].set_title('Force - Displacement')
     axs[1].set_xlabel('Displacements [mm]')
     axs[1].set_ylabel('Total Applied Force [kN]')
@@ -103,7 +105,7 @@ def plot_deformations(pdf):
     # axs[1].set_xlim(-35,0)
     axs[1].invert_xaxis()
     axs[1].invert_yaxis()
-    
+
     plt.show()
 
 
