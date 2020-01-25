@@ -12,9 +12,9 @@ import sphinx_compas_theme
 
 # -- General configuration ------------------------------------------------
 
-project = "compas_iot"
+project = "compas_testing"
 copyright = "BlockResearchGroup"
-author = "Franesco Ranaudo"
+author = "Francesco Ranaudo"
 release = "0.1.0"
 version = ".".join(release.split(".")[0:2])
 
@@ -45,12 +45,14 @@ extensions = [
 
 autodoc_default_flags = [
     "undoc-members",
+    'private-members',
+    'special-members',
     "show-inheritance",
 ]
 
 autodoc_member_order = "alphabetical"
 
-autoclass_content = "class"
+#autoclass_content = "class"
 
 # autosummary options
 
@@ -61,7 +63,7 @@ autosummary_generate = True
 napoleon_google_docstring = True
 napoleon_numpy_docstring = True
 napoleon_include_init_with_doc = False
-napoleon_include_private_with_doc = False
+napoleon_include_private_with_doc = True
 napoleon_include_special_with_doc = True
 napoleon_use_admonition_for_examples = False
 napoleon_use_admonition_for_notes = False
@@ -98,7 +100,7 @@ html_theme = "compaspkg"
 html_theme_path = sphinx_compas_theme.get_html_theme_path()
 
 html_theme_options = {
-    "package_name"    : "compas_iot",
+    "package_name"    : "compas_testing",
     "package_title"   : project,
     "package_version" : release,
 }
