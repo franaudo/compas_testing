@@ -60,54 +60,54 @@ def results_per_stage(input_file, tollerance=50):
 
 
     def history_to_json(points_history, destination):
-    """
-    Converts the point history dictionary into a json file and save it in a folder.
+        """
+        Converts the point history dictionary into a json file and save it in a folder.
 
-    Parameters
-    ----------
-    points_history : dictionary 
-        key: string - the coordinates of a point in initial stage
-        value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
-                tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
-    destination : the path to the folder in which the file will be saved
+        Parameters
+        ----------
+        points_history : dictionary 
+            key: string - the coordinates of a point in initial stage
+            value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
+                    tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
+        destination : the path to the folder in which the file will be saved
 
 
-    """
+        """
 
-    i=0
-    for history in points_history:
-        name = "/points_history_" + str(i)
-        with open(destination + name + '.json', 'w') as fp:
-            json.dump(history, fp, indent=1)
-        i+=1
+        i=0
+        for history in points_history:
+            name = "/points_history_" + str(i)
+            with open(destination + name + '.json', 'w') as fp:
+                json.dump(history, fp, indent=1)
+            i+=1
     
 
     def group_per_stage(results_list):
-    """
-    Groups the results in a dictionary where the keys are the stage numbers and the values are 
-    the coordinates of each point.
+        """
+        Groups the results in a dictionary where the keys are the stage numbers and the values are 
+        the coordinates of each point.
 
-    Parameters
-    ----------
-    results_list : a list of lists 
-        each list describes a point at a given stage as follows : [Stage, time, X, Y, Z, gkey]
+        Parameters
+        ----------
+        results_list : a list of lists 
+            each list describes a point at a given stage as follows : [Stage, time, X, Y, Z, gkey]
 
-    Returns
-    -------
-    dict : a dictionary where: 
-        key : int - Stage number 
-        value : (sequence) – A sequence of locations in three-dimensional space [X, Y, Z]
-    """
+        Returns
+        -------
+        dict : a dictionary where: 
+            key : int - Stage number 
+            value : (sequence) – A sequence of locations in three-dimensional space [X, Y, Z]
+        """
 
-    results_dict = {}
-    for key, group in itertools.groupby(results_list, key=lambda element: element[0]):
-        g = list(group)
-        t=[]
-        for e in g:
-            t.append((e[2],e[3],e[4]))
-        results_dict[int(key)] = t
-    
-    return results_dict
+        results_dict = {}
+        for key, group in itertools.groupby(results_list, key=lambda element: element[0]):
+            g = list(group)
+            t=[]
+            for e in g:
+                t.append((e[2],e[3],e[4]))
+            results_dict[int(key)] = t
+        
+        return results_dict
 
 
 def group_per_gkey(results_list):
