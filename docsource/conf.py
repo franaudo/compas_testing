@@ -98,7 +98,7 @@ html_theme = "compaspkg"
 html_theme_path = sphinx_compas_theme.get_html_theme_path()
 
 html_theme_options = {
-    "package_name"    : "compas_iot",
+    "package_name"    : "compas_testing",
     "package_title"   : project,
     "package_version" : release,
 }
