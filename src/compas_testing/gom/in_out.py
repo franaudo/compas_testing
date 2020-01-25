@@ -7,19 +7,21 @@ import numpy as np
 import compas
 from compas.geometry import closest_point_in_cloud
 
+from compas_testing.helpers import base_round
+
+
 __author__     = 'Francesco Ranaudo'
 __copyright__  = 'Copyright 2020, BLOCK Research Group - ETH Zurich'
 __license__    = 'MIT License'
 __email__      = 'ranaudo@arch.ethz.ch'
 
 
-__all__ = ['results_per_stage',
-           'history_to_json',
+__all__ = ['results_to_list',
            'group_per_stage',
            'group_per_gkey',
-           'find_points',
-           'find_points_0',
-           'split_points_history',
+           'find_points_between_stages',
+           'find_points_from_stage',
+           'history_to_json',
            ]
 
 
@@ -40,7 +42,11 @@ __all__ = ['results_per_stage',
 #     return point_clouds
 
 
-def results_per_stage(input_file, tollerance=50):
+# ******************************************************************************
+#   IN
+# ******************************************************************************
+
+def results_to_list(input_file, tollerance=50):
     """
     Converts the text results to a list and computes the geometric keys of the points within a specific tollerance.
 
@@ -72,29 +78,6 @@ def results_per_stage(input_file, tollerance=50):
             results.append(fl)
      
     return results
-
-
-def history_to_json(points_history, destination):
-    """
-    Converts the point history dictionary into a json file and save it in a folder.
-
-    Parameters
-    ----------
-    points_history : dictionary 
-        key: string - the coordinates of a point in initial stage
-        value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
-                tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
-    destination : the path to the folder in which the file will be saved
-
-
-    """
-
-    i=0
-    for history in points_history:
-        name = "/points_history_" + str(i)
-        with open(destination + name + '.json', 'w') as fp:
-            json.dump(history, fp, indent=1)
-        i+=1
     
 
 def group_per_stage(results_list):
@@ -127,8 +110,8 @@ def group_per_stage(results_list):
 
 def group_per_gkey(results_list):
     """
-    Groups the results in a dictionary where the keys are the geometric keys and the values are 
-    the point coordinates at each stage.
+    Groups the results in a dictionary where the keys are the geometric keys and the values 
+    are the point coordinates at each stage.
 
     Parameters
     ----------
@@ -154,8 +137,7 @@ def group_per_gkey(results_list):
     return results_dict
 
 
-def find_points (points_clouds, num_stages, tollerance=30):
-    
+def find_points_between_stages (points_clouds, num_stages, tollerance=30):
     """
     Finds matching points in pairs of neighbouring stages using compas point_in_cloud function. 
     When no matching point is found within the tollerance, blank points (0.0, (0.0, 0.0, 0.0), 0.0) are added.
@@ -173,12 +155,11 @@ def find_points (points_clouds, num_stages, tollerance=30):
     Returns
     -------
     matches : a sequence of tuples describing locations of a given point in three-dimensional space 
-        tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
+    tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
 
     """
-
-
-    matches=[]
+    
+    points_history=[]
     for s in range(num_stages-1):
         match = []
         for p in points_clouds[s]:
@@ -187,12 +168,12 @@ def find_points (points_clouds, num_stages, tollerance=30):
                 match.append((0.0, (0.0, 0.0, 0.0), 0.0))
             else:
                 match.append(cpc)
-        matches.append(match)
+        points_history.append(match)
 
-    return matches
+    return points_history
 
 
-def find_points_0 (points_clouds, num_stages, start_stage=0, tollerance=50):
+def find_points_from_stage (points_clouds, num_stages, start_stage=0, tollerance=50):
     """
     Finds matching points between one stage and the others using compas point_in_cloud function. 
     When no matching point is found within the tollerance, blank points (0.0, (0.0, 0.0, 0.0), 0.0) are added.
@@ -214,7 +195,7 @@ def find_points_0 (points_clouds, num_stages, start_stage=0, tollerance=50):
     points_history : dictionary 
         key: string - the coordinates of a point in initial stage
         value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
-                tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
+        tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
 
     """
 
@@ -237,23 +218,28 @@ def find_points_0 (points_clouds, num_stages, start_stage=0, tollerance=50):
     return points_history
 
 
-def split_points_history(points_history):
+# ******************************************************************************
+#   OUT
+# ******************************************************************************
+
+def _split_points_history(points_history):
     """
-    Splits the points history dictionary into two separate dictionaries describing the point coordinates and the point displacements individually.
+    Splits the points history dictionary into two separate dictionaries describing 
+    the point coordinates and the point displacements individually.
 
     Parameters
     ----------
     points_history : dictionary 
         key: string - the coordinates of a point in initial stage
         value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
-                tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
+        tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
 
     Returns
     -------
     points_history : dictionary 
         key: string - the coordinates of a point in initial stage
         value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
-                tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
+        tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
 
     points_history_coord : dictionary 
         key: string - the coordinates of a point in initial stage
@@ -279,10 +265,49 @@ def split_points_history(points_history):
     return (points_history, points_history_coord, points_history_disp)
 
 
+def history_to_json(points_history, destination):
+    """
+    Converts the points history dictionary into json files and saves them in local directory.
+
+    Parameters
+    ----------
+    points_history : dictionary 
+        key: string - the coordinates of a point in initial stage
+        value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
+        tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
+    destination : the path to the folder in which the file will be saved
+    """
+
+    points_histories = _split_points_history(points_history)
+
+    names = ['complete', 'coordinates', 'distances']
+    n=0
+    for history in points_histories:
+        name = "/points_history_" + names[n]
+        with open(destination + name + '.json', 'w') as fp:
+            json.dump(history, fp, indent=1)
+        n+=1
+
 
 # ******************************************************************************
 #   Main
 # ******************************************************************************
 
 if __name__ == "__main__":
+
+    # grouped = group_per_gkey(results)
+    # print(len(grouped))
+    
+    
+    # grouped = pdf.groupby('Stage').count()
+    # print(grouped)
+    # print(len(grouped))
+    # for name,group in grouped:
+    #     print (name, len(group))
+    
+    # print(grouped['1000-16040'].count())
+    # stages_results = split_stages(results)
+    
+    # # Step 2 : find matching points in pairs of neighbouring stages
+    # # points = find_points(stages_results[0], 10, 40)
     pass

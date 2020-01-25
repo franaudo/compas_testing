@@ -1,6 +1,6 @@
 import os
 import csv
-import json
+
 import itertools
 
 import compas
@@ -15,8 +15,7 @@ __license__    = 'MIT License'
 __email__      = 'ranaudo@arch.ethz.ch'
 
 
-__all__ = ['read_json',
-           'find_0_stages',
+__all__ = ['find_0_stages',
            'find_0_points',
            'key_to_listcoord',
            'get_test_key',
@@ -31,27 +30,6 @@ __all__ = ['read_json',
            'point_trajectory',
            'find_rhpoint_key', 
            ]
-
-
-def read_json(file):
-
-    """
-    Read the json file.
-
-    Parameters
-    ----------
-    file : json file
-        A json file with collected data.
-
-    Returns
-    -------
-    data : dictionnary with data formatted into keys and values
-        
-    """
-
-    with open(file, 'r') as fp:
-        data = json.load(fp)
-    return data
 
 
 def find_0_stages(data):

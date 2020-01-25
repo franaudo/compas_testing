@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="results_per_stage" href="generated/compas_testing.gom.results_per_stage.html" />
+        <link rel="next" title="results_to_list" href="generated/compas_testing.gom.results_to_list.html" />
     
     
     
@@ -66,31 +66,27 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.results_per_stage.html#compas_testing.gom.results_per_stage" title="compas_testing.gom.results_per_stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">results_per_stage</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.results_to_list.html#compas_testing.gom.results_to_list" title="compas_testing.gom.results_to_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">results_to_list</span></code></a></p></td>
 <td><p>Converts the text results to a list and computes the geometric keys of the points within a specific tollerance.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.history_to_json.html#compas_testing.gom.history_to_json" title="compas_testing.gom.history_to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">history_to_json</span></code></a></p></td>
-<td><p>Converts the point history dictionary into a json file and save it in a folder.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.group_per_stage.html#compas_testing.gom.group_per_stage" title="compas_testing.gom.group_per_stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_per_stage</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.group_per_stage.html#compas_testing.gom.group_per_stage" title="compas_testing.gom.group_per_stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_per_stage</span></code></a></p></td>
 <td><p>Groups the results in a dictionary where the keys are the stage numbers and the values are the coordinates of each point.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.group_per_gkey.html#compas_testing.gom.group_per_gkey" title="compas_testing.gom.group_per_gkey"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_per_gkey</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.group_per_gkey.html#compas_testing.gom.group_per_gkey" title="compas_testing.gom.group_per_gkey"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_per_gkey</span></code></a></p></td>
 <td><p>Groups the results in a dictionary where the keys are the geometric keys and the values are the point coordinates at each stage.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_points.html#compas_testing.gom.find_points" title="compas_testing.gom.find_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_points</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_points_between_stages.html#compas_testing.gom.find_points_between_stages" title="compas_testing.gom.find_points_between_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_points_between_stages</span></code></a></p></td>
 <td><p>Finds matching points in pairs of neighbouring stages using compas point_in_cloud function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_points_0.html#compas_testing.gom.find_points_0" title="compas_testing.gom.find_points_0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_points_0</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_points_from_stage.html#compas_testing.gom.find_points_from_stage" title="compas_testing.gom.find_points_from_stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_points_from_stage</span></code></a></p></td>
 <td><p>Finds matching points between one stage and the others using compas point_in_cloud function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.split_points_history.html#compas_testing.gom.split_points_history" title="compas_testing.gom.split_points_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_points_history</span></code></a></p></td>
-<td><p>Splits the points history dictionary into two separate dictionaries describing the point coordinates and the point displacements individually.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.history_to_json.html#compas_testing.gom.history_to_json" title="compas_testing.gom.history_to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">history_to_json</span></code></a></p></td>
+<td><p>Converts the points history dictionary into json files and saves them in local directory.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<hr class="docutils" />
 <div class="section" id="plot-in-rhino">
 <h2>Plot in rhino</h2>
 <table class="longtable docutils align-default">
@@ -99,54 +95,50 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.read_json.html#compas_testing.gom.read_json" title="compas_testing.gom.read_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_json</span></code></a></p></td>
-<td><p>Read the json file.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_0_stages.html#compas_testing.gom.find_0_stages" title="compas_testing.gom.find_0_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_0_stages</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_0_stages.html#compas_testing.gom.find_0_stages" title="compas_testing.gom.find_0_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_0_stages</span></code></a></p></td>
 <td><p>Find the index of stages with blank points.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_0_points.html#compas_testing.gom.find_0_points" title="compas_testing.gom.find_0_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_0_points</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_0_points.html#compas_testing.gom.find_0_points" title="compas_testing.gom.find_0_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_0_points</span></code></a></p></td>
 <td><p>Find the keys of points containing blank coordinates in their location history.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.key_to_listcoord.html#compas_testing.gom.key_to_listcoord" title="compas_testing.gom.key_to_listcoord"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key_to_listcoord</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.key_to_listcoord.html#compas_testing.gom.key_to_listcoord" title="compas_testing.gom.key_to_listcoord"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key_to_listcoord</span></code></a></p></td>
 <td><p>Convert point keys into XYZ coordinates in 3D space</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.get_test_key.html#compas_testing.gom.get_test_key" title="compas_testing.gom.get_test_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_test_key</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.get_test_key.html#compas_testing.gom.get_test_key" title="compas_testing.gom.get_test_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_test_key</span></code></a></p></td>
 <td><p>Get a key to test a function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.displ_dic.html#compas_testing.gom.displ_dic" title="compas_testing.gom.displ_dic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">displ_dic</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.displ_dic.html#compas_testing.gom.displ_dic" title="compas_testing.gom.displ_dic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">displ_dic</span></code></a></p></td>
 <td><p>Create a dictionary describing the displacement of a point through successive stages, measured from its initial position</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.sliced_dict.html#compas_testing.gom.sliced_dict" title="compas_testing.gom.sliced_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sliced_dict</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.sliced_dict.html#compas_testing.gom.sliced_dict" title="compas_testing.gom.sliced_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sliced_dict</span></code></a></p></td>
 <td><p>Remove unwanted values from a dictionary:</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_max_val.html#compas_testing.gom.find_max_val" title="compas_testing.gom.find_max_val"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_max_val</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_max_val.html#compas_testing.gom.find_max_val" title="compas_testing.gom.find_max_val"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_max_val</span></code></a></p></td>
 <td><p>Find the maximal value and corresponding key within a dictionary.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.scaled_val_dic.html#compas_testing.gom.scaled_val_dic" title="compas_testing.gom.scaled_val_dic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled_val_dic</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.scaled_val_dic.html#compas_testing.gom.scaled_val_dic" title="compas_testing.gom.scaled_val_dic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled_val_dic</span></code></a></p></td>
 <td><p>Create a dictionary in which all values are scaled by a given factor</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.x_rgb.html#compas_testing.gom.x_rgb" title="compas_testing.gom.x_rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x_rgb</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.x_rgb.html#compas_testing.gom.x_rgb" title="compas_testing.gom.x_rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x_rgb</span></code></a></p></td>
 <td><p>Convert a number between 0 and 1 into an rgb color</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages_colour.html#compas_testing.gom.draw_stages_colour" title="compas_testing.gom.draw_stages_colour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages_colour</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages_colour.html#compas_testing.gom.draw_stages_colour" title="compas_testing.gom.draw_stages_colour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages_colour</span></code></a></p></td>
 <td><p>Draw point clouds for chosen stages - in Rhino, Point color is defined by its displacement from initial postion</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages.html#compas_testing.gom.draw_stages" title="compas_testing.gom.draw_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages.html#compas_testing.gom.draw_stages" title="compas_testing.gom.draw_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages</span></code></a></p></td>
 <td><p>draw the point cloud for input stages</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.del_key_in_dict.html#compas_testing.gom.del_key_in_dict" title="compas_testing.gom.del_key_in_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">del_key_in_dict</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.del_key_in_dict.html#compas_testing.gom.del_key_in_dict" title="compas_testing.gom.del_key_in_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">del_key_in_dict</span></code></a></p></td>
 <td><p>Remove a key and its values from a dictionnary</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.point_trajectory.html#compas_testing.gom.point_trajectory" title="compas_testing.gom.point_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">point_trajectory</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.point_trajectory.html#compas_testing.gom.point_trajectory" title="compas_testing.gom.point_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">point_trajectory</span></code></a></p></td>
 <td><p>Draw the locations in space of a point throughout the successive stages</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_rhpoint_key.html#compas_testing.gom.find_rhpoint_key" title="compas_testing.gom.find_rhpoint_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_rhpoint_key</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_rhpoint_key.html#compas_testing.gom.find_rhpoint_key" title="compas_testing.gom.find_rhpoint_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_rhpoint_key</span></code></a></p></td>
 <td><p>Select a point on rhino and get its key in the points_history dictionary</p></td>
 </tr>
 </tbody>
 </table>
-<hr class="docutils" />
 </div>
 </div>
 
@@ -184,6 +176,7 @@
 <li class="nav-item active"><a class="nav-link reference internal" href="compas_testing.html">compas_testing</a><ul class="nav active">
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_testing.gom</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_testing.hif.html">compas_testing.hif</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_testing.helpers.html">compas_testing.helpers</a></li>
 </ul>
 </li>
 </ul>

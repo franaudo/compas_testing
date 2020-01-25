@@ -12,10 +12,6 @@ Concrete Tests
     :toctree: generated/
     :nosignatures:
 
-
-____
-
-
 Spider Results
 ==============
 
@@ -23,18 +19,12 @@ Spider Results
     :toctree: generated/
     :nosignatures:
 
-____
-
-
 Report Results
 ==============
 
 .. autosummary::
     :toctree: generated/
     :nosignatures:
-
-____
-
 """
 
 from .concrete import *

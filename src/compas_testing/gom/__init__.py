@@ -12,15 +12,12 @@ Import/Export
     :toctree: generated/
     :nosignatures:
 
-    results_per_stage
-    history_to_json
+    results_to_list
     group_per_stage
     group_per_gkey
-    find_points
-    find_points_0
-    split_points_history
-____
-
+    find_points_between_stages
+    find_points_from_stage
+    history_to_json
 
 Plot in rhino
 =============
@@ -29,7 +26,6 @@ Plot in rhino
     :toctree: generated/
     :nosignatures:
 
-    read_json
     find_0_stages
     find_0_points
     key_to_listcoord
@@ -44,9 +40,6 @@ Plot in rhino
     del_key_in_dict
     point_trajectory
     find_rhpoint_key
-____
-
-
 """
 
 from .in_out import *
