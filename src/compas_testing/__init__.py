@@ -9,7 +9,8 @@ compas_testing
 .. toctree::
     :maxdepth: 1
 
-
+    compas_testing.gom
+    compas_testing.hif
 """
 
 from __future__ import print_function

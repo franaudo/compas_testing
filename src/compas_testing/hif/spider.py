@@ -1,4 +1,3 @@
-# scripts to post-process the results form the cube/cylinder concrete tests
 import os
 import math
 import csv
@@ -8,12 +7,16 @@ import seaborn as sns
 sns.set()
 sns.set_palette(sns.color_palette("husl", 8))
 
-HERE = os.path.dirname(__file__)
+__copyright__  = 'Copyright 2020, BLOCK Research Group - ETH Zurich'
+__license__    = 'MIT License'
+__email__      = 'ranaudo@arch.ethz.ch'
 
-HOME = os.path.abspath(os.path.join(HERE, "../"))
-DATA = os.path.abspath(os.path.join(HOME, "data"))
-DOCS = os.path.abspath(os.path.join(HOME, "docs"))
-TEMP = os.path.abspath(os.path.join(HOME, "temp"))
+
+__all__ = ['parse_results',
+           'plot_forces',
+           'plot_deformations',
+           ]
+
 
 
 def parse_results(input_file):
@@ -108,6 +111,10 @@ def plot_deformations(pdf):
 
     plt.show()
 
+
+# ******************************************************************************
+#   Main
+# ******************************************************************************
 
 if __name__ == "__main__":
     input_file = DATA + '\\spider_results\\cycle00_2019_12_18_16_15_36_Job1_001_002_001_001.txt'

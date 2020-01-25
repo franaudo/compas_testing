@@ -9,6 +9,30 @@ from compas.geometry import Point
 from compas_rhino.artists import PointArtist
 
 
+__author__     = 'Francesco Ranaudo'
+__copyright__  = 'Copyright 2020, BLOCK Research Group - ETH Zurich'
+__license__    = 'MIT License'
+__email__      = 'ranaudo@arch.ethz.ch'
+
+
+__all__ = ['read_json',
+           'find_0_stages',
+           'find_0_points',
+           'key_to_listcoord',
+           'get_test_key',
+           'displ_dic',
+           'sliced_dict',
+           'find_max_val',
+           'scaled_val_dic',
+           'x_rgb',
+           'draw_stages_colour',
+           'draw_stages',
+           'del_key_in_dict',
+           'point_trajectory',
+           'find_rhpoint_key', 
+           ]
+
+
 def read_json(file):
 
     """
@@ -28,6 +52,7 @@ def read_json(file):
     with open(file, 'r') as fp:
         data = json.load(fp)
     return data
+
 
 def find_0_stages(data):
 
@@ -54,6 +79,7 @@ def find_0_stages(data):
             if value[i] == [0.0, 0.0, 0.0]:
                 index_list.append(i)
     return index_list
+
 
 def find_0_points(data):
 
@@ -82,6 +108,7 @@ def find_0_points(data):
     
     return key_list
 
+
 def key_to_listcoord(key):
 
     """
@@ -99,7 +126,8 @@ def key_to_listcoord(key):
     stripkey = key.strip("(").strip(")").split(", ")
     coord = [float(elem) for elem in stripkey]
     return coord
-    
+
+
 def get_test_key(dict):
 
     """
@@ -121,6 +149,7 @@ def get_test_key(dict):
             tkey = key
             i += 1
     return tkey
+
 
 def displ_dic(points_history):
 
@@ -151,6 +180,7 @@ def displ_dic(points_history):
             points_history_disp[key].append(dist)
     return points_history_disp
 
+
 def sliced_dict(dic, start, stop):
 
     """
@@ -180,6 +210,7 @@ def sliced_dict(dic, start, stop):
         sliced_dict[key] = value[start:stop]
     return sliced_dict
 
+
 def find_max_val(dic):
 
     """
@@ -206,6 +237,7 @@ def find_max_val(dic):
             max_key = key
     return max_val, max_key
 
+
 def scaled_val_dic(factor, dic):
 
     """
@@ -229,6 +261,7 @@ def scaled_val_dic(factor, dic):
     for key, value in dic.items():
         scaled_dic[key] = [v/factor for v in value]
     return scaled_dic
+
 
 def x_rgb(x_ratio):
 
@@ -257,6 +290,7 @@ def x_rgb(x_ratio):
     rgb = (r, g, b)
 
     return rgb
+
 
 def draw_stages_colour(points_history_coord, scaled_displ, STAGE_a, STAGE_b):
 
@@ -294,6 +328,7 @@ def draw_stages_colour(points_history_coord, scaled_displ, STAGE_a, STAGE_b):
                 i+=1
     return p 
 
+
 def draw_stages(points_history_coord, scaled_displ, start, stop):
 
     '''draw the point cloud for input stages'''
@@ -329,6 +364,7 @@ def draw_stages(points_history_coord, scaled_displ, start, stop):
             p.draw()
 
     return p 
+
 
 def del_key_in_dict(dic, keylist):
 
@@ -394,6 +430,11 @@ def find_rhpoint_key():
     split = parse.split(",")
     key = '(' + split[0] + ',' + split[1] + ',' + split[2] + ')'
     return key
+
+
+# ******************************************************************************
+#   Main
+# ******************************************************************************
 
 if __name__ == "__main__":
 

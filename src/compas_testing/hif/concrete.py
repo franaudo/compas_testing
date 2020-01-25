@@ -1,4 +1,4 @@
-# scripts to post-process the results form the cube/cylinder concrete tests
+
 import os
 import math
 import pandas as pd
@@ -8,12 +8,17 @@ sns.set()
 
 import csv
 
-HERE = os.path.dirname(__file__)
+__author__     = 'Francesco Ranaudo'
+__copyright__  = 'Copyright 2020, BLOCK Research Group - ETH Zurich'
+__license__    = 'MIT License'
+__email__      = 'ranaudo@arch.ethz.ch'
 
-HOME = os.path.abspath(os.path.join(HERE, "../"))
-DATA = os.path.abspath(os.path.join(HOME, "data"))
-DOCS = os.path.abspath(os.path.join(HOME, "docs"))
-TEMP = os.path.abspath(os.path.join(HOME, "temp"))
+
+__all__ = ['parse_results',
+           'double_punch',
+           'plot_results',
+           ]
+
 
 
 def parse_results(input_file, type):
@@ -65,10 +70,14 @@ def plot_results():
     plt.show()
     pass
 
-def double_pounch(Ncr, D, h, p=37.5):
+def double_punch(Ncr, D, h, p=37.5):
     fct = 4*10**3*Ncr / (math.pi*(2.4*D*h-p**2))
     return fct
 
+
+# ******************************************************************************
+#   Main
+# ******************************************************************************
 
 if __name__ == "__main__":
     input_file = DATA + '\\cubes_results\\Compressive_Strength.txt'
