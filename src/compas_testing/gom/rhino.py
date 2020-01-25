@@ -1,11 +1,9 @@
-import os
-import csv
-
 import itertools
 
 import compas
 from compas.geometry import closest_point_in_cloud, distance_point_point
 from compas.geometry import Point
+
 from compas_rhino.artists import PointArtist
 
 
@@ -15,27 +13,46 @@ __license__    = 'MIT License'
 __email__      = 'ranaudo@arch.ethz.ch'
 
 
-__all__ = ['find_0_stages',
-           'find_0_points',
-           'key_to_listcoord',
-           'get_test_key',
-           'displ_dic',
-           'sliced_dict',
+__all__ = ['find_corrupted_stages',
+           'find_corrupted_points',
+           'split_results',
            'find_max_val',
            'scaled_val_dic',
            'x_rgb',
            'draw_stages_colour',
            'draw_stages',
-           'del_key_in_dict',
+           'remove_points_from_results',
            'point_trajectory',
            'find_rhpoint_key', 
            ]
 
-
-def find_0_stages(data):
+def _key_to_coordinates(key):
 
     """
-    Find the index of stages with blank points.
+    Converts point keys into XYZ coordinates
+
+    Parameters
+    ----------
+    key: string - the coordinates of a point in initial stage
+
+    Returns
+    -------
+    coord : tuple - XYZ coordinates of a point in 3D space
+        
+    """
+    stripkey = key.strip("(").strip(")").split(", ")
+    point_coordinates = tuple(float(elem) for elem in stripkey)
+    return point_coordinates
+
+
+# ******************************************************************************
+#   Clean results
+# ******************************************************************************
+
+def find_corrupted_stages(coordinates_data, val=[0.0, 0.0, 0.0]):
+
+    """
+    Find the index of the stages with blank points and add them to a list.
 
     Parameters
     ----------
@@ -43,26 +60,27 @@ def find_0_stages(data):
         key: string - the coordinates of a point in initial stage
         value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
         * tuple : distance to reference point, XYZ coordinates of the point, Stage of the point
+    val: any marker used to identify missing points
 
     Returns
     -------
-    index_list : list - a list of the indexes of stages containing blank points
+    index_list : list - a list with the indexes of the stages containing blank points
         
     """
-
-    for key, value in data.items():
-        index_list = []
-        print(len(value))
-        for i in range(len(value)):
-            if value[i] == [0.0, 0.0, 0.0]:
+    index_list = []
+    for key, value in coordinates_data.items():
+        for i, e in enumerate(value):
+            if e == val:
                 index_list.append(i)
+    # remove duplicates (dict cannot have duplicate kwys!)
+    index_list = list(dict.fromkeys(index_list))
     return index_list
 
 
-def find_0_points(data):
+def find_corrupted_points(coordinates_data, val=[0.0, 0.0, 0.0]):
 
     """
-    Find the keys of points containing blank coordinates in their location history.
+    Find the keys of the points containing at least one corrupted configuration in their location history.
 
     Parameters
     ----------
@@ -77,168 +95,68 @@ def find_0_points(data):
         
     """
 
-    key_list = []
-    for key, value in data.items():
-        for v in value :
-            if v == [0.0, 0.0, 0.0]:
-                key_list.append(key)
-                break
+    corrupted_points_keys = []
+    for key, value in coordinates_data.items():
+        try:
+            value.index(val)
+            corrupted_points_keys.append(key)
+        except ValueError:
+            pass
     
-    return key_list
+    return corrupted_points_keys
 
 
-def key_to_listcoord(key):
+def remove_points_from_results(point_keys, points_history):
 
     """
-    Convert point keys into XYZ coordinates in 3D space
+    Remove a list of points form the results. This deletes the entire history 
+    of that point.
 
     Parameters
     ----------
-    key: string - the coordinates of a point in initial stage
+    point_key : list - list of the keys of the points to be removed
+
+    point_histories : dict - points results
 
     Returns
     -------
-    coord : list - XYZ coordinates of a point in 3D space
-        
-    """
-    stripkey = key.strip("(").strip(")").split(", ")
-    coord = [float(elem) for elem in stripkey]
-    return coord
-
-
-def get_test_key(dict):
+    points_history : dict - clean results
 
     """
-    Get a key to test a function.
+
+    for k in point_keys:
+        del points_history[k]
+    return points_history
+
+
+def split_results(points_history, chunks):
+
+    """
+    Splits the results in chunks. Useful to split continuous measurements into
+    test cycles.
 
     Parameters
     ----------
-    dict : dictionary
-
-    Returns
-    -------
-    key : variable - a key in the dictionary
-        
-    """
-
-    i=0
-    for key, value in dict.items():
-        while i<1:
-            tkey = key
-            i += 1
-    return tkey
-
-
-def displ_dic(points_history):
-
-    """
-    Create a dictionary describing the displacement of a point through successive stages, measured from its initial position
-
-    Parameters
-    ----------
-    points_history : dictionary 
-        key: string - the coordinates of a point in initial stage
-        value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
-        * tuple : distance to reference point, XYZ coordinates of the point, Stage of the point
-
-    Returns
-    -------
-    points_history_disp : dictionary 
-        key: string - the coordinates of a point in initial stage
-        value : list - a list of distances between the reference point and its location in three-dimensional space throughout the stages  
-
-    """
-
-    points_history_disp = {}
-    for key, value in points_history.items():
-        ref_point = key_to_listcoord(key)
-        points_history_disp[key] = []
-        for v in value :
-            dist = distance_point_point(ref_point, v)
-            points_history_disp[key].append(dist)
-    return points_history_disp
-
-
-def sliced_dict(dic, start, stop):
-
-    """
-    Remove unwanted values from a dictionary:
-
-    Create a new dictionary containing a slice of the values of the input one.
-
-    Parameters
-    ----------
-    dic : dictionary 
-        key: -
-        value : list - length of the list should exceed 'stop'
+    points_history : dict 
+        key: str - point
+        value : list - point history
     
-    start : int - the index of the value at the begining of the slice
-
-    stop : int - the index of the value at the end of the slice
-
-    condition : len(values) < start < stop
+    chunks : dict - the index of the value at the begining of the slice
+        key: str - chunck name
+        value : list of int - [start, stop]
 
     Returns
     -------
-    sliced_dic : dictionary 
+    cycles : dict of dict 
 
     """
-    sliced_dict = {}
-    for key, value in dic.items():
-        sliced_dict[key] = value[start:stop]
-    return sliced_dict
-
-
-def find_max_val(dic):
-
-    """
-    Find the maximal value and corresponding key within a dictionary.
-
-    Parameters
-    ----------
-    dic : dictionary 
-        key: -
-        value : list - list of int/float variables
-
-    Returns
-    -------
-    max_val : int/float - maximal value  
-    max_key : key - key corresponding to maximal value
-
-    """
-    
-    max_val = 0
-    for key, value in dic.items():
-        intermediate_max = max(dic[key])
-        if intermediate_max > max_val:
-            max_val = intermediate_max
-            max_key = key
-    return max_val, max_key
-
-
-def scaled_val_dic(factor, dic):
-
-    """
-    Create a dictionary in which all values are scaled by a given factor
-
-    Parameters
-    ----------
-    factor : float - scalar used to scale values
-    dic : dictionary 
-        key: -
-        value : list - a list of scalars
-
-    Returns
-    -------
-    scaled_dic : dictionary 
-        key: -
-        value : list - a list of scalars obtained by dividing the input values by the set factor
-    
-    """
-    scaled_dic = {}
-    for key, value in dic.items():
-        scaled_dic[key] = [v/factor for v in value]
-    return scaled_dic
+    cycles = {}
+    for c, ends in chunks.items():
+        new_history={}
+        for point, history in points_history.items():
+                new_history[point] = history[ends[0]:ends[-1]]
+        cycles.update({c: new_history})
+    return cycles
 
 
 def x_rgb(x_ratio):
@@ -344,29 +262,6 @@ def draw_stages(points_history_coord, scaled_displ, start, stop):
     return p 
 
 
-def del_key_in_dict(dic, keylist):
-
-    """
-    Remove a key and its values from a dictionnary
-
-    Parameters
-    ----------
-    dic : dictionary 
-
-    keylist : list - list of keys to be removed
-
-    * condition : keys must match in dic and keylist
-
-    Returns
-    -------
-    dic : dictionary - dictionary with removed keys
-
-    """
-    for key in keylist:
-        del dic[key]
-    return dic
-
-
 def point_trajectory(points_history, key, rgb=(255, 255, 255)):
 
 
@@ -416,44 +311,61 @@ def find_rhpoint_key():
 
 if __name__ == "__main__":
 
-    #import point coordinates from json files
-    coordinates_file = '/Users/fentons/Desktop/hilo/post-process/points_history_1.json'
+    import os
 
-    #convert json file to coordinates dictionary
+    import compas_testing
+    import compas_testing.gom as gom
+    from compas_testing.helpers import read_json
+
+    HERE = os.path.dirname(__file__)
+
+    HOME = os.path.abspath(os.path.join(HERE, "../../../"))
+    DATA = os.path.abspath(os.path.join(HOME, "data"))
+    DOCS = os.path.abspath(os.path.join(HOME, "docs"))
+    TEMP = os.path.abspath(os.path.join(HOME, "temp"))
+
+    # set point coordinates json files location and read the data
+    coordinates_file = DATA + '/GOM_output/points_history_coordinates.json'
     coordinates_data = read_json(coordinates_file)
 
-    #remove points with blank coordintes in their history from dictionary
-    keylist_0 = find_0_points(coordinates_data)
-    point_coordinates_cleaned = del_key_in_dict(coordinates_data, keylist_0)
-
-    #remove faulty point from dictionnary 
-    #this point has the highest displacement currently since it was mis-mapped in gom
-    displacements_all = displ_dic(point_coordinates_cleaned)
-    max_displ, max_key = find_max_val(displacements_all)
-    point_coordinates = del_key_in_dict(point_coordinates_cleaned, [max_key])
-
-    #compute the displacements of each point through the stages
-    displacements = displ_dic(point_coordinates)
-
-    #create a displacement color gradient 
-    # find the max point displacement, use it as a scaler to convert displacements into values ranging between 0 and 1, convert these values into rgb colors
-    scaler, sc_key = find_max_val(displacements)
-    displ_color = scaled_val_dic(scaler, displacements)
-
-    #draw point clouds of chosen stages with associated colors
-    stages = draw_stages(point_coordinates, displ_color, 110, 127)
-
-    # FIND POINT TRAJECTORY
-
     # #import point coordinates from json files
-    # filepath = '/Users/fentons/Desktop/hilo/post-process/points_history_1.json'
+    # coordinates_file = '/Users/fentons/Desktop/hilo/post-process/points_history_1.json'
 
     # #convert json file to coordinates dictionary
-    # input_data = read_json(filepath)
+    # coordinates_data = read_json(coordinates_file)
 
-    # #find the key of the selected point int the point_hitory dictionary
-    # key = find_rhpoint_key()
+    # #remove points with blank coordintes in their history from dictionary
+    # keylist_0 = find_0_points(coordinates_data)
+    # point_coordinates_cleaned = del_key_in_dict(coordinates_data, keylist_0)
 
-    # #Draw the locations in space of a point throughout the successive stages
-    # #the points will be drawn in a new layer
-    # trajectory = point_trajectory(input_data, key, (0, 255, 255))
+    # #remove faulty point from dictionnary 
+    # #this point has the highest displacement currently since it was mis-mapped in gom
+    # displacements_all = displ_dic(point_coordinates_cleaned)
+    # max_displ, max_key = find_max_val(displacements_all)
+    # point_coordinates = del_key_in_dict(point_coordinates_cleaned, [max_key])
+
+    # #compute the displacements of each point through the stages
+    # displacements = displ_dic(point_coordinates)
+
+    # #create a displacement color gradient 
+    # # find the max point displacement, use it as a scaler to convert displacements into values ranging between 0 and 1, convert these values into rgb colors
+    # scaler, sc_key = find_max_val(displacements)
+    # displ_color = scaled_val_dic(scaler, displacements)
+
+    # #draw point clouds of chosen stages with associated colors
+    # stages = draw_stages(point_coordinates, displ_color, 110, 127)
+
+    # # FIND POINT TRAJECTORY
+
+    # # #import point coordinates from json files
+    # # filepath = '/Users/fentons/Desktop/hilo/post-process/points_history_1.json'
+
+    # # #convert json file to coordinates dictionary
+    # # input_data = read_json(filepath)
+
+    # # #find the key of the selected point int the point_hitory dictionary
+    # # key = find_rhpoint_key()
+
+    # # #Draw the locations in space of a point throughout the successive stages
+    # # #the points will be drawn in a new layer
+    # # trajectory = point_trajectory(input_data, key, (0, 255, 255))

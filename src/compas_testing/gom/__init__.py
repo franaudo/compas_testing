@@ -19,6 +19,26 @@ Import/Export
     find_points_from_stage
     history_to_json
 
+Clean Results
+=============
+
+.. autosummary::
+    :toctree: generated/
+    :nosignatures:
+    
+    find_corrupted_stages
+    find_corrupted_points
+    remove_points_from_results
+    split_results
+
+Evaluate Results
+================
+
+.. autosummary::
+    :toctree: generated/
+    :nosignatures:
+    
+
 Plot in rhino
 =============
 
@@ -26,23 +46,17 @@ Plot in rhino
     :toctree: generated/
     :nosignatures:
 
-    find_0_stages
-    find_0_points
-    key_to_listcoord
-    get_test_key
-    displ_dic
-    sliced_dict
-    find_max_val
-    scaled_val_dic
     x_rgb
     draw_stages_colour
     draw_stages
-    del_key_in_dict
+    remove_points_from_results
     point_trajectory
     find_rhpoint_key
 """
 
 from .in_out import *
-from .rhino import *
+# from .rhino import *
+from .clean import *
+from .evaluate import *
 
 __all__ = [name for name in dir() if not name.startswith('_')]

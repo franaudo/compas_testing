@@ -3,6 +3,12 @@ This example illustrates how to import the results file generate by GOM PONTOS
 and convert it to 3 json file for further post-process
 """
 
+__author__     = 'Francesco Ranaudo'
+__copyright__  = 'Copyright 2020, BLOCK Research Group - ETH Zurich'
+__license__    = 'MIT License'
+__email__      = 'ranaudo@arch.ethz.ch'
+
+
 import os
 
 import compas_testing.gom as gom
@@ -14,20 +20,21 @@ DATA = os.path.abspath(os.path.join(HOME, "data"))
 DOCS = os.path.abspath(os.path.join(HOME, "docs"))
 TEMP = os.path.abspath(os.path.join(HOME, "temp"))
 
-# import table describing the locations of a series of points in 3D space, at different stages  
+# 1. import results file from GOM (generate with the proper template)  
 input_file = DATA + '/GOM_results/gom_export.txt'
 
-# create sublists per stages
+# 2. Convert results
 results = gom.results_to_list(input_file)
 
-# create a dictionnary per stage with indivuidual keys for points
+# 3. Create pointclouds for each stage
 points_clouds = gom.group_per_stage(results)
 
-# find total number of stages
+# 4. Group information per point
 num_stages = len(points_clouds)
-
-# create a dictionnary per point describing the point locations in space throughout the stages
 points_history = gom.find_points_from_stage(points_clouds, num_stages, tollerance=50)
 
-# export point coordinates and point displacements into separate json files
-gom.history_to_json(points_history, DATA + '/GOM_output')
+# 5. Export to json
+gom.history_to_json(points_history, 
+                    DATA + '/GOM_output', 
+                    names=['complete', 'coordinates', 'distances'],
+                    from_gom=True)

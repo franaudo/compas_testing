@@ -265,22 +265,30 @@ def _split_points_history(points_history):
     return (points_history, points_history_coord, points_history_disp)
 
 
-def history_to_json(points_history, destination):
+def history_to_json(points_history, destination, names, from_gom=False):
     """
     Converts the points history dictionary into json files and saves them in local directory.
 
     Parameters
     ----------
-    points_history : dictionary 
+    points_history : dict 
         key: string - the coordinates of a point in initial stage
         value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
         tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)
-    destination : the path to the folder in which the file will be saved
+    
+    destination : str - the path to the folder in which the file will be saved
+
+    names = list of str - list of names for each history to convert
+
+    from_gom = bool - set if it is the points history coming directly from GOM PONTOS  
     """
 
-    points_histories = _split_points_history(points_history)
-
-    names = ['complete', 'coordinates', 'distances']
+    # TODO: change and move to helpers
+    if from_gom == True:
+        points_histories = _split_points_history(points_history)
+    else:
+        points_histories = [points_history]
+    
     n=0
     for history in points_histories:
         name = "/points_history_" + names[n]
