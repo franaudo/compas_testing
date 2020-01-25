@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="key_to_listcoord" href="compas_testing.gom.key_to_listcoord.html" />
+        <link rel="next" title="read_json" href="compas_testing.helpers.read_json.html" />
     
     
     
-        <link rel="prev" title="find_0_stages" href="compas_testing.gom.find_0_stages.html" />
+        <link rel="prev" title="normalise_dict" href="compas_testing.helpers.normalise_dict.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,20 +56,18 @@
 
                     
 
-                    <div class="detail section" id="find-0-points">
-<h1>find_0_points</h1>
+                    <div class="detail section" id="key-to-coordinates">
+<h1>key_to_coordinates</h1>
 <dl class="function">
-<dt id="compas_testing.gom.find_0_points">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">find_0_points</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span></dt>
-<dd><p>Find the keys of points containing blank coordinates in their location history.</p>
+<dt id="compas_testing.helpers.key_to_coordinates">
+<code class="sig-prename descclassname">compas_testing.helpers.</code><code class="sig-name descname">key_to_coordinates</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span></dt>
+<dd><p>Converts point keys into XYZ coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points_history</strong> (<em>dictionary</em>) – key: string - the coordinates of a point in initial stage
-value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
-* tuple : distance to reference point, XYZ coordinates of the point, Stage of the point</p>
+<dd class="field-odd"><p><strong>key</strong> (<em>string - the coordinates of a point in initial stage</em>)</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>key_list</strong> (<em>list - a list of the keys of the points containing blank coordinates in their location history</em>)</p>
+<dd class="field-even"><p><strong>coord</strong> (<em>tuple - XYZ coordinates of a point in 3D space</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -108,9 +106,9 @@ value : sequence - a sequence of tuples describing locations of a given point in
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav active">
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.html">compas_testing</a><ul class="nav active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.hif.html">compas_testing.hif</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.helpers.html">compas_testing.helpers</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.helpers.html">compas_testing.helpers</a></li>
 </ul>
 </li>
 </ul>
@@ -134,7 +132,7 @@ value : sequence - a sequence of tuples describing locations of a given point in
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">find_0_points</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">key_to_coordinates</a></li>
 </ul>
 
 

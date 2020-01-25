@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="get_test_key" href="compas_testing.gom.get_test_key.html" />
+        <link rel="next" title="draw_stages_colour" href="compas_testing.gom.draw_stages_colour.html" />
     
     
     
-        <link rel="prev" title="find_0_points" href="compas_testing.gom.find_0_points.html" />
+        <link rel="prev" title="find_abs_max_displacement" href="compas_testing.gom.find_abs_max_displacement.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,18 +56,24 @@
 
                     
 
-                    <div class="detail section" id="key-to-listcoord">
-<h1>key_to_listcoord</h1>
+                    <div class="detail section" id="evaluate-displacements">
+<h1>evaluate_displacements</h1>
 <dl class="function">
-<dt id="compas_testing.gom.key_to_listcoord">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">key_to_listcoord</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span></dt>
-<dd><p>Convert point keys into XYZ coordinates in 3D space</p>
+<dt id="compas_testing.gom.evaluate_displacements">
+<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">evaluate_displacements</code><span class="sig-paren">(</span><em class="sig-param">points_history</em><span class="sig-paren">)</span></dt>
+<dd><p>Create a dictionary describing the displacement of a point through successive stages,
+measured from its initial position, using compas distance_point_point function.
+Use this function if you want to validate the distance results from the compas
+poin_in_cloud function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<em>string - the coordinates of a point in initial stage</em>)</p>
+<dd class="field-odd"><p><strong>points_history</strong> (<em>dictionary</em>) – key: str - the coordinates of a point in initial stage
+value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
+* tuple : distance to reference point, XYZ coordinates of the point, Stage of the point</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>coord</strong> (<em>list - XYZ coordinates of a point in 3D space</em>)</p>
+<dd class="field-even"><p><strong>points_history_disp</strong> (<em>dictionary</em>) – key: str - the coordinates of a point in initial stage
+value : list - a list of distances between the reference point and its location for every stage.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -132,7 +138,7 @@
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">key_to_listcoord</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">evaluate_displacements</a></li>
 </ul>
 
 

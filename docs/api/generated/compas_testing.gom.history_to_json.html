@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="find_0_stages" href="compas_testing.gom.find_0_stages.html" />
+        <link rel="next" title="find_corrupted_stages" href="compas_testing.gom.find_corrupted_stages.html" />
     
     
     
@@ -60,15 +60,17 @@
 <h1>history_to_json</h1>
 <dl class="function">
 <dt id="compas_testing.gom.history_to_json">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">history_to_json</code><span class="sig-paren">(</span><em class="sig-param">points_history</em>, <em class="sig-param">destination</em><span class="sig-paren">)</span></dt>
+<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">history_to_json</code><span class="sig-paren">(</span><em class="sig-param">points_history</em>, <em class="sig-param">destination</em>, <em class="sig-param">names</em>, <em class="sig-param">from_gom=False</em><span class="sig-paren">)</span></dt>
 <dd><p>Converts the points history dictionary into json files and saves them in local directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>points_history</strong> (<em>dictionary</em>) – key: string - the coordinates of a point in initial stage
+<li><p><strong>points_history</strong> (<em>dict</em>) – key: string - the coordinates of a point in initial stage
 value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
 tuple – (distance to reference point, XYZ coordinates of the point, Stage of the point)</p></li>
-<li><p><strong>destination</strong> (<em>the path to the folder in which the file will be saved</em>)</p></li>
+<li><p><strong>destination</strong> (<em>str - the path to the folder in which the file will be saved</em>)</p></li>
+<li><p><strong>names = list of str - list of names for each history to convert</strong></p></li>
+<li><p><strong>from_gom = bool - set if it is the points history coming directly from GOM PONTOS</strong></p></li>
 </ul>
 </dd>
 </dl>

@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="point_trajectory" href="compas_testing.gom.point_trajectory.html" />
+        <link rel="next" title="evaluate_displacements" href="compas_testing.gom.evaluate_displacements.html" />
     
     
     
-        <link rel="prev" title="draw_stages" href="compas_testing.gom.draw_stages.html" />
+        <link rel="prev" title="split_results" href="compas_testing.gom.split_results.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,22 +56,24 @@
 
                     
 
-                    <div class="detail section" id="del-key-in-dict">
-<h1>del_key_in_dict</h1>
+                    <div class="detail section" id="find-abs-max-displacement">
+<h1>find_abs_max_displacement</h1>
 <dl class="function">
-<dt id="compas_testing.gom.del_key_in_dict">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">del_key_in_dict</code><span class="sig-paren">(</span><em class="sig-param">dic</em>, <em class="sig-param">keylist</em><span class="sig-paren">)</span></dt>
-<dd><p>Remove a key and its values from a dictionnary</p>
+<dt id="compas_testing.gom.find_abs_max_displacement">
+<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">find_abs_max_displacement</code><span class="sig-paren">(</span><em class="sig-param">displ_history</em><span class="sig-paren">)</span></dt>
+<dd><p>Find the absolute maximum displacement value and corresponding key among all the points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dic</strong> (<em>dictionary</em>)</p></li>
-<li><p><strong>keylist</strong> (<em>list - list of keys to be removed</em>)</p></li>
-<li><p><strong>* condition</strong> (<em>keys must match in dic and keylist</em>)</p></li>
-</ul>
+<dd class="field-odd"><p><strong>points_history</strong> (<em>dict</em>) – key: str - point key
+value : list - list of floats</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>dic</strong> (<em>dictionary - dictionary with removed keys</em>)</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>max_key</strong> (<em>str - key of the point corresponding to maximum displacement</em>)</p></li>
+<li><p><strong>max_stage</strong> (<em>int - stage number where the maximum displamcent occurs</em>)</p></li>
+<li><p><strong>max_val</strong> (<em>float - absolute maximum value in the points history</em>)</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -136,7 +138,7 @@
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">del_key_in_dict</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">find_abs_max_displacement</a></li>
 </ul>
 
 

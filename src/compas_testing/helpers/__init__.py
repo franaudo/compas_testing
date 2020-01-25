@@ -13,8 +13,11 @@ Helpers
     :toctree: generated/
     :nosignatures:
 
-    read_json
     base_round
+    normalise_dict
+    key_to_coordinates
+    read_json
+    ratio_to_rgb
 
 """
 

@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="x_rgb" href="compas_testing.gom.x_rgb.html" />
+        <link rel="next" title="find_abs_max_displacement" href="compas_testing.gom.find_abs_max_displacement.html" />
     
     
     
-        <link rel="prev" title="find_max_val" href="compas_testing.gom.find_max_val.html" />
+        <link rel="prev" title="remove_points_from_results" href="compas_testing.gom.remove_points_from_results.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,23 +56,24 @@
 
                     
 
-                    <div class="detail section" id="scaled-val-dic">
-<h1>scaled_val_dic</h1>
+                    <div class="detail section" id="split-results">
+<h1>split_results</h1>
 <dl class="function">
-<dt id="compas_testing.gom.scaled_val_dic">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">scaled_val_dic</code><span class="sig-paren">(</span><em class="sig-param">factor</em>, <em class="sig-param">dic</em><span class="sig-paren">)</span></dt>
-<dd><p>Create a dictionary in which all values are scaled by a given factor</p>
+<dt id="compas_testing.gom.split_results">
+<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">split_results</code><span class="sig-paren">(</span><em class="sig-param">points_history</em>, <em class="sig-param">chunks</em><span class="sig-paren">)</span></dt>
+<dd><p>Splits the results in chunks. Useful to split continuous measurements into
+test cycles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>factor</strong> (<em>float - scalar used to scale values</em>)</p></li>
-<li><p><strong>dic</strong> (<em>dictionary</em>) – key: -
-value : list - a list of scalars</p></li>
+<li><p><strong>points_history</strong> (<em>dict</em>) – key: str - point
+value : list - point history</p></li>
+<li><p><strong>chunks</strong> (<em>dict - the index of the value at the begining of the slice</em>) – key: str - chunck name
+value : list of int - [start, stop]</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>scaled_dic</strong> (<em>dictionary</em>) – key: -
-value : list - a list of scalars obtained by dividing the input values by the set factor</p>
+<dd class="field-even"><p><strong>cycles</strong> (<em>dict of dict</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -137,7 +138,7 @@ value : list - a list of scalars obtained by dividing the input values by the se
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">scaled_val_dic</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">split_results</a></li>
 </ul>
 
 

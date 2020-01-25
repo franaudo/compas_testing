@@ -4,10 +4,6 @@ import json
 import itertools
 import numpy as np
 
-import compas
-from compas.geometry import closest_point_in_cloud
-
-from compas_testing.helpers import base_round
 
 
 __author__     = 'Francesco Ranaudo'
@@ -16,7 +12,8 @@ __license__    = 'MIT License'
 __email__      = 'ranaudo@arch.ethz.ch'
 
 
-__all__ = ['find_max_displacement',
+__all__ = ['find_abs_max_displacement',
+           'evaluate_displacements',
            ]
 
 
@@ -24,7 +21,7 @@ __all__ = ['find_max_displacement',
 #   Evaluate
 # ******************************************************************************
 
-def find_max_displacement(displ_history):
+def find_abs_max_displacement(displ_history):
 
     """
     Find the absolute maximum displacement value and corresponding key among all the points.
@@ -47,93 +44,64 @@ def find_max_displacement(displ_history):
     max_val = max(displ_history[max_key])
     max_stage = displ_history[max_key].index(max_val)
 
-    # for key, value in points_history.items():
-    #     intermediate_max = max(dic[key])
-    #     if intermediate_max > max_val:
-    #         max_val = intermediate_max
-    #         max_key = key
     return max_key, max_stage, max_val
 
 
+def evaluate_displacements(points_history):
+    """
+    Create a dictionary describing the displacement of a point through successive stages, 
+    measured from its initial position, using compas distance_point_point function.
+    Use this function if you want to validate the distance results from the compas
+    poin_in_cloud function.
+
+    Parameters
+    ----------
+    points_history : dictionary 
+        key: str - the coordinates of a point in initial stage
+        value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
+        * tuple : distance to reference point, XYZ coordinates of the point, Stage of the point
+
+    Returns
+    -------
+    points_history_disp : dictionary 
+        key: str - the coordinates of a point in initial stage
+        value : list - a list of distances between the reference point and its location for every stage.  
+
+    """
+
+    from compas_testing.helpers import key_to_coordinates
+    from compas.geometry import distance_point_point
+
+    points_history_disp = {}
+    for key, value in points_history.items():
+        ref_point = key_to_coordinates(key)
+        points_history_disp[key] = []
+        for v in value :
+            points_history_disp[key].append(distance_point_point(ref_point, v))
+    return points_history_disp
 
 
-
-# def get_test_key(dict):
-
+# def evaluate_trajectory(point_key, points_history_coord):
 #     """
-#     Get a key to test a function.
-
-#     Parameters
-#     ----------
-#     dict : dictionary
-
-#     Returns
-#     -------
-#     key : variable - a key in the dictionary
-        
-#     """
-
-#     i=0
-#     for key, value in dict.items():
-#         while i<1:
-#             tkey = key
-#             i += 1
-#     return tkey
-
-
-# def point_history(points_history):
-
-#     """
-#     Create a dictionary describing the displacement of a point through successive stages, measured from its initial position
+#     Create a dictionary describing the displacement of a point through successive stages, 
+#     measured from its initial position, using compas distance_point_point function.
+#     Use this function if you want to validate the distance results from the compas
+#     poin_in_cloud function.
 
 #     Parameters
 #     ----------
 #     points_history : dictionary 
-#         key: string - the coordinates of a point in initial stage
+#         key: str - the coordinates of a point in initial stage
 #         value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
 #         * tuple : distance to reference point, XYZ coordinates of the point, Stage of the point
 
 #     Returns
 #     -------
 #     points_history_disp : dictionary 
-#         key: string - the coordinates of a point in initial stage
-#         value : list - a list of distances between the reference point and its location in three-dimensional space throughout the stages  
+#         key: str - the coordinates of a point in initial stage
+#         value : list - a list of distances between the reference point and its location for every stage.  
 
 #     """
-
-#     points_history_disp = {}
-#     for key, value in points_history.items():
-#         ref_point = key_to_listcoord(key)
-#         points_history_disp[key] = []
-#         for v in value :
-#             dist = distance_point_point(ref_point, v)
-#             points_history_disp[key].append(dist)
-#     return points_history_disp
-
-
-def scaled_val_dic(factor, dic):
-
-    """
-    Create a dictionary in which all values are scaled by a given factor
-
-    Parameters
-    ----------
-    factor : float - scalar used to scale values
-    dic : dictionary 
-        key: -
-        value : list - a list of scalars
-
-    Returns
-    -------
-    scaled_dic : dictionary 
-        key: -
-        value : list - a list of scalars obtained by dividing the input values by the set factor
-    
-    """
-    scaled_dic = {}
-    for key, value in dic.items():
-        scaled_dic[key] = [v/factor for v in value]
-    return scaled_dic
 
 
 # ******************************************************************************
@@ -156,9 +124,17 @@ if __name__ == "__main__":
     TEMP = os.path.abspath(os.path.join(HOME, "temp"))
 
     # set point coordinates json files location and read the data
-    coordinates_file = DATA + '/GOM_output/points_history_c0_dist.json'
-    coordinates_data = read_json(coordinates_file)
+    input_file = DATA + '/GOM_output/points_history_c0_coord.json'
+    coordinates_data = read_json(input_file)
 
-    max_key, max_stage, max_val = gom.find_max_displacement(coordinates_data)
-    print(str(max_key), str(max_stage), str(max_val))
+    input_file = DATA + '/GOM_output/points_history_c0_dist.json'
+    distances_data = read_json(input_file)
 
+    max_key, max_stage, max_val = gom.find_abs_max_displacement(distances_data)
+    print('from compas_point_cloud: ', str(max_key), str(max_stage), str(max_val))
+
+    displacements = gom.evaluate_displacements(coordinates_data)
+    max_key, max_stage, max_val = gom.find_abs_max_displacement(displacements)
+    print('from compas_point_distance: ', str(max_key), str(max_stage), str(max_val))
+    # NOTE: probably it is different because one starts from stage 0 and the other from stage 1.
+    # TODO: fix dictionaries key to use stage 0 coordinates values

@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="displ_dic" href="compas_testing.gom.displ_dic.html" />
+        <link rel="next" title="find_corrupted_points" href="compas_testing.gom.find_corrupted_points.html" />
     
     
     
-        <link rel="prev" title="key_to_listcoord" href="compas_testing.gom.key_to_listcoord.html" />
+        <link rel="prev" title="history_to_json" href="compas_testing.gom.history_to_json.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,18 +56,23 @@
 
                     
 
-                    <div class="detail section" id="get-test-key">
-<h1>get_test_key</h1>
+                    <div class="detail section" id="find-corrupted-stages">
+<h1>find_corrupted_stages</h1>
 <dl class="function">
-<dt id="compas_testing.gom.get_test_key">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">get_test_key</code><span class="sig-paren">(</span><em class="sig-param">dict</em><span class="sig-paren">)</span></dt>
-<dd><p>Get a key to test a function.</p>
+<dt id="compas_testing.gom.find_corrupted_stages">
+<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">find_corrupted_stages</code><span class="sig-paren">(</span><em class="sig-param">coordinates_data, val=[0.0, 0.0, 0.0]</em><span class="sig-paren">)</span></dt>
+<dd><p>Find the index of the stages with blank points and add them to a list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dict</strong> (<em>dictionary</em>)</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points_history</strong> (<em>dictionary</em>) – key: string - the coordinates of a point in initial stage
+value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
+* tuple : distance to reference point, XYZ coordinates of the point, Stage of the point</p></li>
+<li><p><strong>val</strong> (<em>any marker used to identify missing points</em>)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>key</strong> (<em>variable - a key in the dictionary</em>)</p>
+<dd class="field-even"><p><strong>index_list</strong> (<em>list - a list with the indexes of the stages containing blank points</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -132,7 +137,7 @@
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">get_test_key</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">find_corrupted_stages</a></li>
 </ul>
 
 

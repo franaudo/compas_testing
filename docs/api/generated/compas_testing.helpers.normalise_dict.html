@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="find_max_val" href="compas_testing.gom.find_max_val.html" />
+        <link rel="next" title="key_to_coordinates" href="compas_testing.helpers.key_to_coordinates.html" />
     
     
     
-        <link rel="prev" title="displ_dic" href="compas_testing.gom.displ_dic.html" />
+        <link rel="prev" title="base_round" href="compas_testing.helpers.base_round.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,25 +56,24 @@
 
                     
 
-                    <div class="detail section" id="sliced-dict">
-<h1>sliced_dict</h1>
+                    <div class="detail section" id="normalise-dict">
+<h1>normalise_dict</h1>
 <dl class="function">
-<dt id="compas_testing.gom.sliced_dict">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">sliced_dict</code><span class="sig-paren">(</span><em class="sig-param">dic</em>, <em class="sig-param">start</em>, <em class="sig-param">stop</em><span class="sig-paren">)</span></dt>
-<dd><p>Remove unwanted values from a dictionary:</p>
-<p>Create a new dictionary containing a slice of the values of the input one.</p>
+<dt id="compas_testing.helpers.normalise_dict">
+<code class="sig-prename descclassname">compas_testing.helpers.</code><code class="sig-name descname">normalise_dict</code><span class="sig-paren">(</span><em class="sig-param">input_dict</em>, <em class="sig-param">factor</em><span class="sig-paren">)</span></dt>
+<dd><p>Create a dictionary in which all values are scaled by a given factor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dic</strong> (<em>dictionary</em>) – key: -
-value : list - length of the list should exceed ‘stop’</p></li>
-<li><p><strong>start</strong> (<em>int - the index of the value at the begining of the slice</em>)</p></li>
-<li><p><strong>stop</strong> (<em>int - the index of the value at the end of the slice</em>)</p></li>
-<li><p><strong>condition</strong> (<em>len(values) &lt; start &lt; stop</em>)</p></li>
+value : list - a list of scalars</p></li>
+<li><p><strong>factor</strong> (<em>float or str - scalar used to scale values. if set to “max” normalise with respect</em>)</p></li>
+<li><p><strong>to the maximum</strong></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>sliced_dic</strong> (<em>dictionary</em>)</p>
+<dd class="field-even"><p><strong>output_dict</strong> (<em>dict</em>) – key: str - same key as the input dictionary
+value : list - a list of scalars obtained by dividing the input values by the factor</p>
 </dd>
 </dl>
 </dd></dl>
@@ -113,9 +112,9 @@ value : list - length of the list should exceed ‘stop’</p></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav active">
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.html">compas_testing</a><ul class="nav active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.hif.html">compas_testing.hif</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.helpers.html">compas_testing.helpers</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.helpers.html">compas_testing.helpers</a></li>
 </ul>
 </li>
 </ul>
@@ -139,7 +138,7 @@ value : list - length of the list should exceed ‘stop’</p></li>
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">sliced_dict</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">normalise_dict</a></li>
 </ul>
 
 

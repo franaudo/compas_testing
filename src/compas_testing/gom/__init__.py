@@ -37,6 +37,9 @@ Evaluate Results
 .. autosummary::
     :toctree: generated/
     :nosignatures:
+
+    find_abs_max_displacement
+    evaluate_displacements
     
 
 Plot in rhino
@@ -46,16 +49,14 @@ Plot in rhino
     :toctree: generated/
     :nosignatures:
 
-    x_rgb
     draw_stages_colour
     draw_stages
-    remove_points_from_results
     point_trajectory
     find_rhpoint_key
 """
 
 from .in_out import *
-# from .rhino import *
+from .rhino import *
 from .clean import *
 from .evaluate import *
 

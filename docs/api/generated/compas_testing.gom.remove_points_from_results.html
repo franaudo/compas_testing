@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="find_0_points" href="compas_testing.gom.find_0_points.html" />
+        <link rel="next" title="split_results" href="compas_testing.gom.split_results.html" />
     
     
     
-        <link rel="prev" title="history_to_json" href="compas_testing.gom.history_to_json.html" />
+        <link rel="prev" title="find_corrupted_points" href="compas_testing.gom.find_corrupted_points.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,20 +56,22 @@
 
                     
 
-                    <div class="detail section" id="find-0-stages">
-<h1>find_0_stages</h1>
+                    <div class="detail section" id="remove-points-from-results">
+<h1>remove_points_from_results</h1>
 <dl class="function">
-<dt id="compas_testing.gom.find_0_stages">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">find_0_stages</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span></dt>
-<dd><p>Find the index of stages with blank points.</p>
+<dt id="compas_testing.gom.remove_points_from_results">
+<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">remove_points_from_results</code><span class="sig-paren">(</span><em class="sig-param">point_keys</em>, <em class="sig-param">points_history</em><span class="sig-paren">)</span></dt>
+<dd><p>Remove a list of points form the results. This deletes the entire history
+of that point.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points_history</strong> (<em>dictionary</em>) – key: string - the coordinates of a point in initial stage
-value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
-* tuple : distance to reference point, XYZ coordinates of the point, Stage of the point</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_key</strong> (<em>list - list of the keys of the points to be removed</em>)</p></li>
+<li><p><strong>point_histories</strong> (<em>dict - points results</em>)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>index_list</strong> (<em>list - a list of the indexes of stages containing blank points</em>)</p>
+<dd class="field-even"><p><strong>points_history</strong> (<em>dict - clean results</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -134,7 +136,7 @@ value : sequence - a sequence of tuples describing locations of a given point in
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">find_0_stages</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">remove_points_from_results</a></li>
 </ul>
 
 

@@ -87,6 +87,46 @@
 </tbody>
 </table>
 </div>
+<div class="section" id="clean-results">
+<h2>Clean Results</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_corrupted_stages.html#compas_testing.gom.find_corrupted_stages" title="compas_testing.gom.find_corrupted_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_corrupted_stages</span></code></a></p></td>
+<td><p>Find the index of the stages with blank points and add them to a list.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_corrupted_points.html#compas_testing.gom.find_corrupted_points" title="compas_testing.gom.find_corrupted_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_corrupted_points</span></code></a></p></td>
+<td><p>Find the keys of the points containing at least one corrupted configuration in their location history.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.remove_points_from_results.html#compas_testing.gom.remove_points_from_results" title="compas_testing.gom.remove_points_from_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_points_from_results</span></code></a></p></td>
+<td><p>Remove a list of points form the results.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.split_results.html#compas_testing.gom.split_results" title="compas_testing.gom.split_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_results</span></code></a></p></td>
+<td><p>Splits the results in chunks.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="evaluate-results">
+<h2>Evaluate Results</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_abs_max_displacement.html#compas_testing.gom.find_abs_max_displacement" title="compas_testing.gom.find_abs_max_displacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_abs_max_displacement</span></code></a></p></td>
+<td><p>Find the absolute maximum displacement value and corresponding key among all the points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.evaluate_displacements.html#compas_testing.gom.evaluate_displacements" title="compas_testing.gom.evaluate_displacements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_displacements</span></code></a></p></td>
+<td><p>Create a dictionary describing the displacement of a point through successive stages, measured from its initial position, using compas distance_point_point function.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="plot-in-rhino">
 <h2>Plot in rhino</h2>
 <table class="longtable docutils align-default">
@@ -95,41 +135,11 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_0_stages.html#compas_testing.gom.find_0_stages" title="compas_testing.gom.find_0_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_0_stages</span></code></a></p></td>
-<td><p>Find the index of stages with blank points.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages_colour.html#compas_testing.gom.draw_stages_colour" title="compas_testing.gom.draw_stages_colour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages_colour</span></code></a></p></td>
+<td><p>Draws point clouds for chosen stages - in Rhino, Point color is defined by its displacement from initial postion</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_0_points.html#compas_testing.gom.find_0_points" title="compas_testing.gom.find_0_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_0_points</span></code></a></p></td>
-<td><p>Find the keys of points containing blank coordinates in their location history.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.key_to_listcoord.html#compas_testing.gom.key_to_listcoord" title="compas_testing.gom.key_to_listcoord"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key_to_listcoord</span></code></a></p></td>
-<td><p>Convert point keys into XYZ coordinates in 3D space</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.get_test_key.html#compas_testing.gom.get_test_key" title="compas_testing.gom.get_test_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_test_key</span></code></a></p></td>
-<td><p>Get a key to test a function.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.displ_dic.html#compas_testing.gom.displ_dic" title="compas_testing.gom.displ_dic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">displ_dic</span></code></a></p></td>
-<td><p>Create a dictionary describing the displacement of a point through successive stages, measured from its initial position</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.sliced_dict.html#compas_testing.gom.sliced_dict" title="compas_testing.gom.sliced_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sliced_dict</span></code></a></p></td>
-<td><p>Remove unwanted values from a dictionary:</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_max_val.html#compas_testing.gom.find_max_val" title="compas_testing.gom.find_max_val"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_max_val</span></code></a></p></td>
-<td><p>Find the maximal value and corresponding key within a dictionary.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.scaled_val_dic.html#compas_testing.gom.scaled_val_dic" title="compas_testing.gom.scaled_val_dic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled_val_dic</span></code></a></p></td>
-<td><p>Create a dictionary in which all values are scaled by a given factor</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.x_rgb.html#compas_testing.gom.x_rgb" title="compas_testing.gom.x_rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x_rgb</span></code></a></p></td>
-<td><p>Convert a number between 0 and 1 into an rgb color</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages_colour.html#compas_testing.gom.draw_stages_colour" title="compas_testing.gom.draw_stages_colour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages_colour</span></code></a></p></td>
-<td><p>Draw point clouds for chosen stages - in Rhino, Point color is defined by its displacement from initial postion</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages.html#compas_testing.gom.draw_stages" title="compas_testing.gom.draw_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages.html#compas_testing.gom.draw_stages" title="compas_testing.gom.draw_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages</span></code></a></p></td>
 <td><p>draw the point cloud for input stages</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.del_key_in_dict.html#compas_testing.gom.del_key_in_dict" title="compas_testing.gom.del_key_in_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">del_key_in_dict</span></code></a></p></td>
-<td><p>Remove a key and its values from a dictionnary</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.point_trajectory.html#compas_testing.gom.point_trajectory" title="compas_testing.gom.point_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">point_trajectory</span></code></a></p></td>
 <td><p>Draw the locations in space of a point throughout the successive stages</p></td>
@@ -202,6 +212,8 @@
                 <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">compas_testing.gom</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#import-export">Import/Export</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#clean-results">Clean Results</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#evaluate-results">Evaluate Results</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#plot-in-rhino">Plot in rhino</a></li>
 </ul>
 </li>

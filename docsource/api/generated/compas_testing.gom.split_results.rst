@@ -1,8 +1,8 @@
 .. rst-class:: detail
 
-find_0_points
+split_results
 ================================
 
 .. currentmodule:: compas_testing.gom
 
-.. autofunction:: find_0_points
+.. autofunction:: split_results
