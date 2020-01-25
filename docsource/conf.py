@@ -12,9 +12,9 @@ import sphinx_compas_theme
 
 # -- General configuration ------------------------------------------------
 
-project = "compas_iot"
+project = "compas_testing"
 copyright = "BlockResearchGroup"
-author = "Franesco Ranaudo"
+author = "Francesco Ranaudo"
 release = "0.1.0"
 version = ".".join(release.split(".")[0:2])
 

@@ -3,7 +3,7 @@
 compas_iot
 ********************************************************************************
 
-.. currentmodule:: compas_iot
+.. currentmodule:: compas_testing
 
 
 .. toctree::
@@ -18,7 +18,7 @@ import os
 import sys
 
 
-__author__ = ["Franesco Ranaudo"]
+__author__ = ["Francesco Ranaudo"]
 __copyright__ = "BlockResearchGroup"
 __license__ = "MIT License"
 __email__ = "ranaudo@arch.ethz.ch"
