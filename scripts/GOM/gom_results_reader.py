@@ -16,6 +16,23 @@ DOCS = os.path.abspath(os.path.join(HOME, "docs"))
 TEMP = os.path.abspath(os.path.join(HOME, "temp"))
 
 
+# def parse_results(input_file):
+#     results=[]
+#     with open(input_file,'r') as f:
+#         for line in f:
+#             " ".join(line.split())
+#             print(line)
+#             r = csv.reader(line, delimiter='\t')
+#             results.append(r)
+#     print(results[0])
+
+
+# def results_to_point_clouds(results):
+#     formatted = [[int(elem[0]), (elem[2],elem[3],elem[4])] for elem in results]
+#     point_clouds = group_per_stage(formatted)
+#     return point_clouds
+
+
 def base_round(x, base):
     """
     Custom multiple rounding function.
@@ -295,3 +312,19 @@ if __name__ == "__main__":
     # export point coordinates and point displacements into separate json files
     history_to_json(histories, DATA + '/GOM_output')
 
+
+    # grouped = group_per_gkey(results)
+    # print(len(grouped))
+    
+    
+    # grouped = pdf.groupby('Stage').count()
+    # print(grouped)
+    # print(len(grouped))
+    # for name,group in grouped:
+    #     print (name, len(group))
+    
+    # print(grouped['1000-16040'].count())
+    # stages_results = split_stages(results)
+    
+    # # Step 2 : find matching points in pairs of neighbouring stages
+    # # points = find_points(stages_results[0], 10, 40)

@@ -2,7 +2,6 @@ import os
 import csv
 import json
 import itertools
-#import math
 
 import compas
 from compas.geometry import closest_point_in_cloud, distance_point_point

@@ -27,13 +27,13 @@ requirements = read("requirements.txt").split("\n")
 optional_requirements = {}
 
 setup(
-    name="compas_iot",
+    name="compas_testing",
     version="0.1.0",
-    description="package to connect and post-process testing data",
+    description="package to convert, analyse and visualise testing data",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/BRG/compas_iot",
-    author="Franesco Ranaudo",
+    url="https://github.com/BRG/compas_testing",
+    author="Francesco Ranaudo",
     author_email="ranaudo@arch.ethz.ch",
     license="MIT license",
     classifiers=[
@@ -55,7 +55,7 @@ setup(
     ],
     keywords=[],
     project_urls={},
-    packages=["compas_iot"],
+    packages=["compas_testing"],
     package_dir={"": "src"},
     package_data={},
     data_files=[],
