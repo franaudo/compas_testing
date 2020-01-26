@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="evaluate_color_map" href="compas_testing.gom.evaluate_color_map.html" />
+        <link rel="next" title="compas_testing.hif" href="../compas_testing.hif.html" />
     
     
     
-        <link rel="prev" title="find_abs_max_displacement" href="compas_testing.gom.find_abs_max_displacement.html" />
+        <link rel="prev" title="evaluate_displacements" href="compas_testing.gom.evaluate_displacements.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,24 +56,21 @@
 
                     
 
-                    <div class="detail section" id="evaluate-displacements">
-<h1>evaluate_displacements</h1>
+                    <div class="detail section" id="evaluate-color-map">
+<h1>evaluate_color_map</h1>
 <dl class="function">
-<dt id="compas_testing.gom.evaluate_displacements">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">evaluate_displacements</code><span class="sig-paren">(</span><em class="sig-param">points_history</em><span class="sig-paren">)</span></dt>
-<dd><p>Create a dictionary describing the displacement of a point through successive stages,
-measured from its initial position, using compas distance_point_point function.
-Use this function if you want to validate the distance results from the compas
-point_in_cloud function.</p>
+<dt id="compas_testing.gom.evaluate_color_map">
+<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">evaluate_color_map</code><span class="sig-paren">(</span><em class="sig-param">points_history_value_normalised</em><span class="sig-paren">)</span></dt>
+<dd><p>Creates a color map dictionary where the keys are the points and the values are the rgb tuples associated to each
+stage. Typically used with normalised displacements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points_history</strong> (<em>dictionary</em>) – key: str - the coordinates of a point in initial stage
-value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
-* tuple : distance to reference point, XYZ coordinates of the point, Stage of the point</p>
+<dd class="field-odd"><p><strong>points_history_value_normalised</strong> (<em>dictionary</em>) – key: str - the coordinates of a point in initial stage
+value : list - normalised values [0-1] to draw the color map</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>points_history_disp</strong> (<em>dictionary</em>) – key: str - the coordinates of a point in initial stage
-value : list - a list of distances between the reference point and its location for every stage.</p>
+<dd class="field-even"><p><strong>color_map</strong> (<em>dictionary</em>) – key: str - the coordinates of a point in initial stage
+value : list of tuples - a list with the rgb tuples associated to each stage.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -139,7 +136,7 @@ value : list - a list of distances between the reference point and its location 
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">evaluate_displacements</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">evaluate_color_map</a></li>
 </ul>
 
 

@@ -56,11 +56,11 @@
 
                     
 
-                    <div class="detail section" id="draw-stage-colour">
-<h1>draw_stage_colour</h1>
+                    <div class="detail section" id="draw-point-cloud-color">
+<h1>draw_point_cloud_color</h1>
 <dl class="function">
-<dt id="compas_testing.rhino.draw_stage_colour">
-<code class="sig-prename descclassname">compas_testing.rhino.</code><code class="sig-name descname">draw_stage_colour</code><span class="sig-paren">(</span><em class="sig-param">points_history_coord</em>, <em class="sig-param">points_history_disp_norm</em>, <em class="sig-param">stage_index</em><span class="sig-paren">)</span></dt>
+<dt id="compas_testing.rhino.draw_point_cloud_color">
+<code class="sig-prename descclassname">compas_testing.rhino.</code><code class="sig-name descname">draw_point_cloud_color</code><span class="sig-paren">(</span><em class="sig-param">points_history_coord</em>, <em class="sig-param">color_map</em>, <em class="sig-param">stage_index</em><span class="sig-paren">)</span></dt>
 <dd><p>Draws point clouds for a chosen stage - in Rhino,
 Point color is defined by its displacement from initial position</p>
 <dl class="field-list simple">
@@ -68,8 +68,8 @@ Point color is defined by its displacement from initial position</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>points_history_coord</strong> (<em>dictionary</em>) – key: str - point geometric key
 value : list - a list of locations of a given point in three-dimensional space (XYZ coordinates of the point)</p></li>
-<li><p><strong>points_history_disp_norm</strong> (<em>dictionary</em>) – key: str - point geometric key
-value : list of floats - normalized displacement  of the point at each stage from its starting position</p></li>
+<li><p><strong>color_map</strong> (<em>dictionary</em>) – key: str - point geometric key
+value : list of lists - RGB values for each point at each stage</p></li>
 <li><p><strong>stage_index</strong> (<em>int - the stages to be drawn</em>)</p></li>
 </ul>
 </dd>
@@ -137,7 +137,7 @@ value : list of floats - normalized displacement  of the point at each stage fro
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">draw_stage_colour</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">draw_point_cloud_color</a></li>
 </ul>
 
 
