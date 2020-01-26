@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="remove_points_from_results" href="compas_testing.gom.remove_points_from_results.html" />
+        <link rel="next" title="plot_material_results" href="compas_testing.hif.plot_material_results.html" />
     
     
     
-        <link rel="prev" title="find_corrupted_stages" href="compas_testing.gom.find_corrupted_stages.html" />
+        <link rel="prev" title="parse_spider_results" href="compas_testing.hif.parse_spider_results.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,20 +56,23 @@
 
                     
 
-                    <div class="detail section" id="find-corrupted-points">
-<h1>find_corrupted_points</h1>
+                    <div class="detail section" id="double-punch">
+<h1>double_punch</h1>
 <dl class="function">
-<dt id="compas_testing.gom.find_corrupted_points">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">find_corrupted_points</code><span class="sig-paren">(</span><em class="sig-param">coordinates_data, val=[0.0, 0.0, 0.0]</em><span class="sig-paren">)</span></dt>
-<dd><p>Find the keys of the points containing at least one corrupted configuration in their location history.</p>
+<dt id="compas_testing.hif.double_punch">
+<code class="sig-prename descclassname">compas_testing.hif.</code><code class="sig-name descname">double_punch</code><span class="sig-paren">(</span><em class="sig-param">Ncr</em>, <em class="sig-param">D</em>, <em class="sig-param">h</em>, <em class="sig-param">p=37.5</em><span class="sig-paren">)</span></dt>
+<dd><p>Converts the results of double punch test of a concrete cube to the corresponding tension capacity.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>points_history</strong> (<em>dictionary</em>) – key: string - the coordinates of a point in initial stage
-value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
-* tuple : distance to reference point, XYZ coordinates of the point, Stage of the point</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Ncr</strong> (<em>float - max compression force from the test</em>)</p></li>
+<li><p><strong>D</strong> (<em>float - DOUBLE CHECK!</em>)</p></li>
+<li><p><strong>h</strong> (<em>float - DOUBLE CHECK!</em>)</p></li>
+<li><p><strong>P</strong> (<em>float - DOUBLE CHECK!</em>)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>key_list</strong> (<em>list - a list of the keys of the points containing blank coordinates in their location history</em>)</p>
+<dd class="field-even"><p><strong>fct</strong> (<em>float - concrete tension capacity</em>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -108,8 +111,8 @@ value : sequence - a sequence of tuples describing locations of a given point in
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav active">
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.html">compas_testing</a><ul class="nav active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.hif.html">compas_testing.hif</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.hif.html">compas_testing.hif</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.helpers.html">compas_testing.helpers</a></li>
 </ul>
 </li>
@@ -134,7 +137,7 @@ value : sequence - a sequence of tuples describing locations of a given point in
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">find_corrupted_points</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">double_punch</a></li>
 </ul>
 
 

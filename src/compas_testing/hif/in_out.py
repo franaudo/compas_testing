@@ -1,11 +1,3 @@
-
-import os
-import math
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set()
-
 import csv
 
 __author__     = 'Francesco Ranaudo'
@@ -14,14 +6,13 @@ __license__    = 'MIT License'
 __email__      = 'ranaudo@arch.ethz.ch'
 
 
-__all__ = ['parse_results',
-           'double_punch',
-           'plot_results',
+__all__ = ['parse_material_results',
+           'parse_spider_results', 
            ]
 
 
 
-def parse_results(input_file, type):
+def parse_material_results(input_file, type):
     '''
     parse the .txt result file and format it
     '''
@@ -64,22 +55,49 @@ def parse_results(input_file, type):
     
     return [info, data, pd_data, test_summary]
 
-def plot_results():
-    pdf = my_pd_data[0]
-    pdf.plot(x ='Extern [mm]', y='Force [kN]', kind = 'scatter')
-    plt.show()
-    pass
 
-def double_punch(Ncr, D, h, p=37.5):
-    fct = 4*10**3*Ncr / (math.pi*(2.4*D*h-p**2))
-    return fct
+def parse_spider_results(input_file):
+    """
+    parse the .txt result file and format it
+    """
 
+    data = []
+    pd_data = []
+    info = []
+    # Read the txt file and split it into separate tests
+    with open(input_file, newline='') as f:
+            r = csv.reader(f, delimiter='\t')
+            for i, l in enumerate(r):
+                # Get general info
+                if i<37:
+                    if not l:
+                        continue
+                    else:
+                        info.append(l)
+                        continue
+                if not l:
+                    continue
+                data.append(l)
+
+    # Remove last empty column
+    for l in range(len(data)):
+        data[l].pop()
+        for i in range(len(data[l])):
+            data[l][i] = float(data[l][i])
+    # Set the headers ad convert to pandas dataframe
+    headers = info[6]
+    pd_data = pd.DataFrame(data=data, columns=headers)
+
+    return [info, data, pd_data]
 
 # ******************************************************************************
 #   Main
 # ******************************************************************************
 
 if __name__ == "__main__":
+
+    import os
+
     input_file = DATA + '\\cubes_results\\Compressive_Strength.txt'
     [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='compression')
     # input_file = DATA + '\\cubes_results\\Double_Punch.txt'
@@ -90,12 +108,4 @@ if __name__ == "__main__":
     # print(my_fct)
     # pdf = my_pd_data[0].cumsum()
     pdf = my_pd_data[0]
-    fig, ax = plt.subplots()
-    pdf.plot(x ='Extern [mm]', y='Force [kN]', ax=ax, kind = 'line')
-    pdf.plot(x ='Def. 2A [mm]', y='Force [kN]', ax=ax, kind = 'line')
-    pdf.plot(x ='Def. 2B [mm]', y='Force [kN]', ax=ax, kind = 'line')    
-    pdf.plot(x ='Def. 2C [mm]', y='Force [kN]', ax=ax, kind = 'line')
-    ax.set_title = ("Deformation [mm]")
-    # with sns.axes_style('white'):
-    #     sns.kdeplot(data=pdf['Force [kN]'], shade=True)
-    plt.show()
+

@@ -1,57 +1,27 @@
-import os
-import math
-import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
 sns.set_palette(sns.color_palette("husl", 8))
 
+
+__author__     = 'Francesco Ranaudo'
 __copyright__  = 'Copyright 2020, BLOCK Research Group - ETH Zurich'
 __license__    = 'MIT License'
 __email__      = 'ranaudo@arch.ethz.ch'
 
 
-__all__ = ['parse_results',
+__all__ = ['plot_material_results',
            'plot_forces',
-           'plot_deformations',
+           'plot_deformations' 
            ]
 
 
-
-def parse_results(input_file):
-    """
-    parse the .txt result file and format it
-    """
-
-    data = []
-    pd_data = []
-    info = []
-    # Read the txt file and split it into separate tests
-    with open(input_file, newline='') as f:
-            r = csv.reader(f, delimiter='\t')
-            for i, l in enumerate(r):
-                # Get general info
-                if i<37:
-                    if not l:
-                        continue
-                    else:
-                        info.append(l)
-                        continue
-                if not l:
-                    continue
-                data.append(l)
-
-    # Remove last empty column
-    for l in range(len(data)):
-        data[l].pop()
-        for i in range(len(data[l])):
-            data[l][i] = float(data[l][i])
-    # Set the headers ad convert to pandas dataframe
-    headers = info[6]
-    pd_data = pd.DataFrame(data=data, columns=headers)
-
-    return [info, data, pd_data]
+def plot_material_results(my_pd_data):
+    pdf = my_pd_data[0]
+    pdf.plot(x ='Extern [mm]', y='Force [kN]', kind = 'scatter')
+    plt.show()
+    pass
 
 
 def plot_forces(pdf):
@@ -117,19 +87,24 @@ def plot_deformations(pdf):
 # ******************************************************************************
 
 if __name__ == "__main__":
-    input_file = DATA + '\\spider_results\\cycle00_2019_12_18_16_15_36_Job1_001_002_001_001.txt'
-    # input_file = DATA + '\\spider_results\\cycle01_2019_12_18_16_15_36_Job1_001_002_001_001_001.txt'
-
-    [info, data, pdf] = parse_results(input_file)
-    pdf['Total Applied Force'] = pdf['Force_south CH=3'] + pdf['Force_south CH=3']
-    beam_weight = -0.79
-    plates_weight = -0.11
-    additional_weight = beam_weight + plates_weight
-    pdf['Total Applied Force'] = pdf['Total Applied Force'].apply(lambda x: x+additional_weight)
-
-    # pdf['TR_south CH=5'] = pdf['TR_south CH=5'].apply(lambda x: x*-0.001)
-    pdf['TR_south CH=5'] = (pdf['TR_south CH=5'] + 560.91) * 0.001
-    pdf['TR_north CH=6'] = (pdf['TR_north CH=6'] + 562.89) * 0.001
-    pdf['Total Ties Tension'] = pdf['TR_south CH=5'] + pdf['TR_north CH=6']
-    # plot_forces(pdf)
-    plot_deformations(pdf)
+    import os
+    
+    input_file = DATA + '\\cubes_results\\Compressive_Strength.txt'
+    [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='compression')
+    # input_file = DATA + '\\cubes_results\\Double_Punch.txt'
+    # [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='double punch')
+    # # print(my_pd_data)
+    # print(my_pd_data)
+    # my_fct = double_pounch(124.3, 150, 150)
+    # print(my_fct)
+    # pdf = my_pd_data[0].cumsum()
+    pdf = my_pd_data[0]
+    fig, ax = plt.subplots()
+    pdf.plot(x ='Extern [mm]', y='Force [kN]', ax=ax, kind = 'line')
+    pdf.plot(x ='Def. 2A [mm]', y='Force [kN]', ax=ax, kind = 'line')
+    pdf.plot(x ='Def. 2B [mm]', y='Force [kN]', ax=ax, kind = 'line')    
+    pdf.plot(x ='Def. 2C [mm]', y='Force [kN]', ax=ax, kind = 'line')
+    ax.set_title = ("Deformation [mm]")
+    # with sns.axes_style('white'):
+    #     sns.kdeplot(data=pdf['Force [kN]'], shade=True)
+    plt.show()
