@@ -26,12 +26,12 @@ clean_coord_history = gom.remove_points_from_results(corrupted_points, coordinat
 clean_dist_history = gom.remove_points_from_results(corrupted_points, distances_data)
 
 # divide the results in cycles
-cycles_length = {'c0':[0,120], 'c1':[20,40]}
+cycles_length = {'c0': [0, 50], 'c1': [70, 125]}
 cycles_coord = gom.split_results(clean_coord_history, cycles_length)
 cycles_dist = gom.split_results(clean_dist_history, cycles_length)
 
 # let's focus only on one cycle
-cycle_coord = cycles_coord['c0']
-history_to_json(cycle_coord, DATA + '/GOM_output', names=['c0_coord'])
-cycle_dist = cycles_dist['c0']
-history_to_json(cycle_dist, DATA + '/GOM_output', names=['c0_dist'])
+cycle_coord = cycles_coord['c1']
+history_to_json(cycle_coord, DATA + '/GOM_output', names=['c1_coord'])
+cycle_dist = cycles_dist['c1']
+history_to_json(cycle_dist, DATA + '/GOM_output', names=['c1_dist'])

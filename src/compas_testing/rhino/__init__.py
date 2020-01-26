@@ -12,7 +12,7 @@ Plot GOM results
     :toctree: generated/
     :nosignatures:
 
-    draw_stage_colour
+    draw_point_cloud_color
 
 """
 

@@ -40,6 +40,7 @@ Evaluate Results
 
     find_abs_max_displacement
     evaluate_displacements
+    evaluate_color_map
 
 """
 

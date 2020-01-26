@@ -1,10 +1,12 @@
-import os
+""" 
+Script to draw the point clouds in Rhino. The colour of the points is
+representative of the relative displacement.
+"""
 
+import os
+from compas.rpc import Proxy
 import compas_testing.rhino as rhino_gom
 from compas_testing.helpers import read_json
-
-
-#rhino_gom = Proxy('compas_testing.rhino')
 
 HERE = os.path.dirname(__file__)
 
@@ -14,11 +16,17 @@ DOCS = os.path.abspath(os.path.join(HOME, "docs"))
 TEMP = os.path.abspath(os.path.join(HOME, "temp"))
 
 # set point coordinates json files location and read the data
-input_file = DATA + '/GOM_output/points_history_c0_coord.json'
+input_file = DATA + '/GOM_output/points_history_c1_coord.json'
 coordinates_data = read_json(input_file)
 
-input_file = DATA + '/GOM_output/points_history_c0_dist_norm.json'
+input_file = DATA + '/GOM_output/points_history_c1_dist.json'
 distances_data = read_json(input_file)
 
-for i in range(5):
-    rhino_gom.draw_stage_colour(coordinates_data, distances_data, i)
+with Proxy('compas_testing.helpers') as helpers:
+     disp_ratio = helpers.normalise_dict(distances_data, 'max')
+     
+with Proxy('compas_testing.gom') as gom:
+     color_map = gom.evaluate_color_map(disp_ratio)
+
+for i in range(55):
+    rhino_gom.draw_point_cloud_color(coordinates_data, color_map, i)
