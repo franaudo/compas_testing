@@ -67,7 +67,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.results_to_list.html#compas_testing.gom.results_to_list" title="compas_testing.gom.results_to_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">results_to_list</span></code></a></p></td>
-<td><p>Converts the text results to a list and computes the geometric keys of the points within a specific tollerance.</p></td>
+<td><p>Converts the text results to a list and computes the geometric keys of the points within a specific tolerance.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.group_per_stage.html#compas_testing.gom.group_per_stage" title="compas_testing.gom.group_per_stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_per_stage</span></code></a></p></td>
 <td><p>Groups the results in a dictionary where the keys are the stage numbers and the values are the coordinates of each point.</p></td>
@@ -76,7 +76,7 @@
 <td><p>Groups the results in a dictionary where the keys are the geometric keys and the values are the point coordinates at each stage.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_points_between_stages.html#compas_testing.gom.find_points_between_stages" title="compas_testing.gom.find_points_between_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_points_between_stages</span></code></a></p></td>
-<td><p>Finds matching points in pairs of neighbouring stages using compas point_in_cloud function.</p></td>
+<td><p>Finds matching points in pairs of neighbouring stages using COMPAS point_in_cloud function.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_points_from_stage.html#compas_testing.gom.find_points_from_stage" title="compas_testing.gom.find_points_from_stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_points_from_stage</span></code></a></p></td>
 <td><p>Finds matching points between one stage and the others using compas point_in_cloud function.</p></td>
@@ -127,29 +127,6 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="plot-in-rhino">
-<h2>Plot in rhino</h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages_colour.html#compas_testing.gom.draw_stages_colour" title="compas_testing.gom.draw_stages_colour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages_colour</span></code></a></p></td>
-<td><p>Draws point clouds for chosen stages - in Rhino, Point color is defined by its displacement from initial postion</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.draw_stages.html#compas_testing.gom.draw_stages" title="compas_testing.gom.draw_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stages</span></code></a></p></td>
-<td><p>draw the point cloud for input stages</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.gom.point_trajectory.html#compas_testing.gom.point_trajectory" title="compas_testing.gom.point_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">point_trajectory</span></code></a></p></td>
-<td><p>Draw the locations in space of a point throughout the successive stages</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_testing.gom.find_rhpoint_key.html#compas_testing.gom.find_rhpoint_key" title="compas_testing.gom.find_rhpoint_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_rhpoint_key</span></code></a></p></td>
-<td><p>Select a point on rhino and get its key in the points_history dictionary</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 
                     
@@ -187,6 +164,7 @@
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_testing.gom</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_testing.hif.html">compas_testing.hif</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_testing.helpers.html">compas_testing.helpers</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_testing.rhino.html">compas_testing.rhino</a></li>
 </ul>
 </li>
 </ul>
@@ -214,7 +192,6 @@
 <li class="nav-item"><a class="nav-link reference internal" href="#import-export">Import/Export</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#clean-results">Clean Results</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#evaluate-results">Evaluate Results</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#plot-in-rhino">Plot in rhino</a></li>
 </ul>
 </li>
 </ul>

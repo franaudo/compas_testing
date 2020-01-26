@@ -28,7 +28,7 @@ clean_dist_history = gom.remove_points_from_results(corrupted_points, distances_
 # divide the results in cycles
 cycles_length = {'c0':[0,120], 'c1':[20,40]}
 cycles_coord = gom.split_results(clean_coord_history, cycles_length)
-cycles_dist = gom.split_results(clean_dist_history, cycles_length)    
+cycles_dist = gom.split_results(clean_dist_history, cycles_length)
 
 # let's focus only on one cycle
 cycle_coord = cycles_coord['c0']

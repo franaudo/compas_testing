@@ -9,21 +9,21 @@
     <meta name="author" content="" />
     <meta name="description" content="" />
 
-    <link rel="shortcut icon" href="../../_static/images/compas.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../_static/images/compas.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="../../_static/css/prism.css" /> -->
-    <link rel="stylesheet" type="text/css" href="../../_static/css/compas.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../_static/css/prism.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../_static/css/compas.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="draw_stages" href="compas_testing.gom.draw_stages.html" />
+        <link rel="next" title="draw_stage_colour" href="generated/compas_testing.rhino.draw_stage_colour.html" />
     
     
     
-        <link rel="prev" title="evaluate_displacements" href="compas_testing.gom.evaluate_displacements.html" />
+        <link rel="prev" title="ratio_to_rgb" href="generated/compas_testing.helpers.ratio_to_rgb.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -34,11 +34,11 @@
 
     <nav class="navbar navbar-expand compas-navbar">
         <a class="navbar-brand" href="/">
-            <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
+            <img src="../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
         </a>
 
         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="../../index.html">compas_testing</a></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html">compas_testing</a></li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
@@ -56,27 +56,22 @@
 
                     
 
-                    <div class="detail section" id="draw-stages-colour">
-<h1>draw_stages_colour</h1>
-<dl class="function">
-<dt id="compas_testing.gom.draw_stages_colour">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">draw_stages_colour</code><span class="sig-paren">(</span><em class="sig-param">points_history_coord</em>, <em class="sig-param">scaled_displ</em>, <em class="sig-param">STAGE_a</em>, <em class="sig-param">STAGE_b</em><span class="sig-paren">)</span></dt>
-<dd><p>Draws point clouds for chosen stages - in Rhino,
-Point color is defined by its displacement from initial postion</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>points_history_coord</strong> (<em>dictionary</em>) – key: *
-value : list - a list of locations of a given point in three-dimensional space (XYZ coordinates of the point)</p></li>
-<li><p><strong>scaled_displ</strong> (<em>dictionary</em>) – key: *
-value : list - a list of scalars between 0 and 1</p></li>
-<li><p><strong>STAGE_</strong> (<em>the stages to be drawn</em>)</p></li>
-<li><p><strong>* condition</strong> (<em>keys must be identical in points_history_coord and scaled_displ</em>)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
+                    <span class="target" id="module-compas_testing.rhino"></span><div class="section" id="compas-testing-rhino">
+<h1>compas_testing.rhino</h1>
+<div class="section" id="plot-gom-results">
+<h2>Plot GOM results</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_testing.rhino.draw_stage_colour.html#compas_testing.rhino.draw_stage_colour" title="compas_testing.rhino.draw_stage_colour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_stage_colour</span></code></a></p></td>
+<td><p>Draws point clouds for a chosen stage - in Rhino, Point color is defined by its displacement from initial position</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
                     
@@ -89,7 +84,7 @@ value : list - a list of scalars between 0 and 1</p></li>
             <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
                 <div class="navbar-light">
 
-                    <form id="" class="d-flex compas-searchbox" action="../../search.html" method="get">
+                    <form id="" class="d-flex compas-searchbox" action="../search.html" method="get">
                         <input class="form-control" type="text" name="q" placeholder="Search docs" />
                         <input type="hidden" name="check_keywords" value="yes" />
                         <input type="hidden" name="area" value="default" />
@@ -106,19 +101,20 @@ value : list - a list of scalars between 0 and 1</p></li>
                             <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
 
                             <ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="../../intro.html">Introduction</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../../gettingstarted.html">Getting Started</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.html">compas_testing</a><ul class="nav active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.hif.html">compas_testing.hif</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.helpers.html">compas_testing.helpers</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../intro.html">Introduction</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../examples.html">Examples</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../api.html">API Reference</a><ul class="nav active">
+<li class="nav-item active"><a class="nav-link reference internal" href="compas_testing.html">compas_testing</a><ul class="nav active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_testing.gom.html">compas_testing.gom</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_testing.hif.html">compas_testing.hif</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_testing.helpers.html">compas_testing.helpers</a></li>
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_testing.rhino</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="../../license.html">License</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../license.html">License</a></li>
 </ul>
 
 
@@ -137,7 +133,10 @@ value : list - a list of scalars between 0 and 1</p></li>
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">draw_stages_colour</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">compas_testing.rhino</a><ul class="nav">
+<li class="nav-item"><a class="nav-link reference internal" href="#plot-gom-results">Plot GOM results</a></li>
+</ul>
+</li>
 </ul>
 
 
@@ -177,10 +176,10 @@ value : list - a list of scalars between 0 and 1</p></li>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
 
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/js/searchtools_.js"></script>
-        <!-- <script src="../../_static/js/prism.js"></script> -->
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/searchtools_.js"></script>
+        <!-- <script src="../_static/js/prism.js"></script> -->
 
         <script>
         $(document).ready(function() {

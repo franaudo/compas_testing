@@ -1,21 +1,20 @@
 import csv
+import pandas as pd
 
-__author__     = 'Francesco Ranaudo'
-__copyright__  = 'Copyright 2020, BLOCK Research Group - ETH Zurich'
-__license__    = 'MIT License'
-__email__      = 'ranaudo@arch.ethz.ch'
-
+__author__ = 'Francesco Ranaudo'
+__copyright__ = 'Copyright 2020, BLOCK Research Group - ETH Zurich'
+__license__ = 'MIT License'
+__email__ = 'ranaudo@arch.ethz.ch'
 
 __all__ = ['parse_material_results',
-           'parse_spider_results', 
+           'parse_spider_results',
            ]
 
 
-
 def parse_material_results(input_file, type):
-    '''
+    """
     parse the .txt result file and format it
-    '''
+    """
     data = []
     pd_data = []
     info = []
@@ -23,23 +22,23 @@ def parse_material_results(input_file, type):
 
     # Read the txt file and split it into separate tests
     with open(input_file, newline='') as f:
-            r = csv.reader(f, delimiter=';')
-            log = []
-            for i, l in enumerate(r):
-                # Get general info
-                if i<4:
-                    info.append(l)
-                    continue
-                if not l:
-                    data.append(log)
-                    log = []
-                    continue
-                log.append(l)
+        r = csv.reader(f, delimiter=';')
+        log = []
+        for i, l in enumerate(r):
+            # Get general info
+            if i < 4:
+                info.append(l)
+                continue
+            if not l:
+                data.append(log)
+                log = []
+                continue
+            log.append(l)
 
     # Set the headers for the panda tables
     if type == 'compression':
-        headers = ['Index', 'Element', 'Markierung', 'Time [s]', 'Force [kN]', 'Extern [mm]', 
-                'Def. 2A [mm]', 'Def. 2B [mm]', 'Def. 2C [mm]']
+        headers = ['Index', 'Element', 'Markierung', 'Time [s]', 'Force [kN]', 'Extern [mm]',
+                   'Def. 2A [mm]', 'Def. 2B [mm]', 'Def. 2C [mm]']
     elif type == 'double punch':
         headers = ['Index', 'Element', 'Markierung', 'Time [s]', 'Force [kN]', 'Extern [mm]']
 
@@ -51,8 +50,7 @@ def parse_material_results(input_file, type):
             for item in range(len(data[t][el])):
                 data[t][el][item] = float(data[t][el][item])
         pd_data.append(pd.DataFrame(data=data[t], columns=headers))
-    
-    
+
     return [info, data, pd_data, test_summary]
 
 
@@ -66,18 +64,18 @@ def parse_spider_results(input_file):
     info = []
     # Read the txt file and split it into separate tests
     with open(input_file, newline='') as f:
-            r = csv.reader(f, delimiter='\t')
-            for i, l in enumerate(r):
-                # Get general info
-                if i<37:
-                    if not l:
-                        continue
-                    else:
-                        info.append(l)
-                        continue
+        r = csv.reader(f, delimiter='\t')
+        for i, l in enumerate(r):
+            # Get general info
+            if i < 37:
                 if not l:
                     continue
-                data.append(l)
+                else:
+                    info.append(l)
+                    continue
+            if not l:
+                continue
+            data.append(l)
 
     # Remove last empty column
     for l in range(len(data)):
@@ -90,12 +88,12 @@ def parse_spider_results(input_file):
 
     return [info, data, pd_data]
 
+
 # ******************************************************************************
 #   Main
 # ******************************************************************************
 
 if __name__ == "__main__":
-
     import os
 
     input_file = DATA + '\\cubes_results\\Compressive_Strength.txt'
@@ -108,4 +106,3 @@ if __name__ == "__main__":
     # print(my_fct)
     # pdf = my_pd_data[0].cumsum()
     pdf = my_pd_data[0]
-

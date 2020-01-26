@@ -21,51 +21,51 @@ __all__ = ['find_abs_max_displacement',
 #   Evaluate
 # ******************************************************************************
 
-def find_abs_max_displacement(displ_history):
+def find_abs_max_displacement(disp_history):
 
     """
     Find the absolute maximum displacement value and corresponding key among all the points.
 
     Parameters
     ----------
-    points_history : dict
+    disp_history : dict
         key: str - point key
         value : list - list of floats
 
     Returns
-    -------  
+    -------
     max_key : str - key of the point corresponding to maximum displacement
-    max_stage: int - stage number where the maximum displamcent occurs
+    max_stage: int - stage number where the maximum displacement occurs
     max_val : float - absolute maximum value in the points history
 
     """
-    
-    max_key = max(displ_history)
-    max_val = max(displ_history[max_key])
-    max_stage = displ_history[max_key].index(max_val)
+
+    max_key = max(disp_history)
+    max_val = max(disp_history[max_key])
+    max_stage = disp_history[max_key].index(max_val)
 
     return max_key, max_stage, max_val
 
 
 def evaluate_displacements(points_history):
     """
-    Create a dictionary describing the displacement of a point through successive stages, 
+    Create a dictionary describing the displacement of a point through successive stages,
     measured from its initial position, using compas distance_point_point function.
     Use this function if you want to validate the distance results from the compas
-    poin_in_cloud function.
+    point_in_cloud function.
 
     Parameters
     ----------
-    points_history : dictionary 
+    points_history : dictionary
         key: str - the coordinates of a point in initial stage
-        value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
+        value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
         * tuple : distance to reference point, XYZ coordinates of the point, Stage of the point
 
     Returns
     -------
-    points_history_disp : dictionary 
+    points_history_disp : dictionary
         key: str - the coordinates of a point in initial stage
-        value : list - a list of distances between the reference point and its location for every stage.  
+        value : list - a list of distances between the reference point and its location for every stage.
 
     """
 
@@ -83,23 +83,23 @@ def evaluate_displacements(points_history):
 
 # def evaluate_trajectory(point_key, points_history_coord):
 #     """
-#     Create a dictionary describing the displacement of a point through successive stages, 
+#     Create a dictionary describing the displacement of a point through successive stages,
 #     measured from its initial position, using compas distance_point_point function.
 #     Use this function if you want to validate the distance results from the compas
-#     poin_in_cloud function.
+#     point_in_cloud function.
 
 #     Parameters
 #     ----------
-#     points_history : dictionary 
+#     points_history : dictionary
 #         key: str - the coordinates of a point in initial stage
-#         value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space 
+#         value : sequence - a sequence of tuples describing locations of a given point in three-dimensional space
 #         * tuple : distance to reference point, XYZ coordinates of the point, Stage of the point
 
 #     Returns
 #     -------
-#     points_history_disp : dictionary 
+#     points_history_disp : dictionary
 #         key: str - the coordinates of a point in initial stage
-#         value : list - a list of distances between the reference point and its location for every stage.  
+#         value : list - a list of distances between the reference point and its location for every stage.
 
 #     """
 

@@ -12,6 +12,7 @@ compas_testing
     compas_testing.gom
     compas_testing.hif
     compas_testing.helpers
+    compas_testing.rhino
 
 """
 

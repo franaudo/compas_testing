@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="compas_testing.hif" href="../compas_testing.hif.html" />
+        <link rel="next" title="License" href="../../license.html" />
     
     
     
-        <link rel="prev" title="point_trajectory" href="compas_testing.gom.point_trajectory.html" />
+        <link rel="prev" title="compas_testing.rhino" href="../compas_testing.rhino.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,12 +56,24 @@
 
                     
 
-                    <div class="detail section" id="find-rhpoint-key">
-<h1>find_rhpoint_key</h1>
+                    <div class="detail section" id="draw-stage-colour">
+<h1>draw_stage_colour</h1>
 <dl class="function">
-<dt id="compas_testing.gom.find_rhpoint_key">
-<code class="sig-prename descclassname">compas_testing.gom.</code><code class="sig-name descname">find_rhpoint_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
-<dd><p>Select a point on rhino and get its key in the points_history dictionary</p>
+<dt id="compas_testing.rhino.draw_stage_colour">
+<code class="sig-prename descclassname">compas_testing.rhino.</code><code class="sig-name descname">draw_stage_colour</code><span class="sig-paren">(</span><em class="sig-param">points_history_coord</em>, <em class="sig-param">points_history_disp_norm</em>, <em class="sig-param">stage_index</em><span class="sig-paren">)</span></dt>
+<dd><p>Draws point clouds for a chosen stage - in Rhino,
+Point color is defined by its displacement from initial position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points_history_coord</strong> (<em>dictionary</em>) – key: str - point geometric key
+value : list - a list of locations of a given point in three-dimensional space (XYZ coordinates of the point)</p></li>
+<li><p><strong>points_history_disp_norm</strong> (<em>dictionary</em>) – key: str - point geometric key
+value : list of floats - normalized displacement  of the point at each stage from its starting position</p></li>
+<li><p><strong>stage_index</strong> (<em>int - the stages to be drawn</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -98,9 +110,10 @@
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav active">
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.html">compas_testing</a><ul class="nav active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.hif.html">compas_testing.hif</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.helpers.html">compas_testing.helpers</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.rhino.html">compas_testing.rhino</a></li>
 </ul>
 </li>
 </ul>
@@ -124,7 +137,7 @@
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">find_rhpoint_key</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">draw_stage_colour</a></li>
 </ul>
 
 
