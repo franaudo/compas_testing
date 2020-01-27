@@ -5,30 +5,53 @@ compas_testing.hif
 
 .. currentmodule:: compas_testing.hif
 
-Concrete Tests
-==============
+Import / Export
+===============
 
 .. autosummary::
     :toctree: generated/
     :nosignatures:
 
-Spider Results
-==============
+    parse_material_results
+    parse_spider_results
+
+
+Evaluate
+========
 
 .. autosummary::
     :toctree: generated/
     :nosignatures:
 
-Report Results
-==============
+    double_punch
+
+
+Plot Results
+============
 
 .. autosummary::
     :toctree: generated/
     :nosignatures:
+
+    plot_material_results
+    plot_forces
+    plot_deformations
+
+
+Report
+======
+
+.. autosummary::
+    :toctree: generated/
+    :nosignatures:
+
+    
+
 """
 
-from .concrete import *
-from .spider import *
+from .in_out import *
+from .evaluate import *
+from .plot import *
 from .report import *
 
 __all__ = [name for name in dir() if not name.startswith('_')]

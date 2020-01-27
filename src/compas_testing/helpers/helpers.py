@@ -11,7 +11,8 @@ all = ['read_json',
        'key_to_coordinates',
        'get_test_key'
        'normalise_dict',
-       'ratio_to_rgb', 
+       'ratio_to_rgb',
+       'combine_dict_in_json',
     ]
 
 
@@ -43,7 +44,7 @@ def normalise_dict(input_dict, factor):
 
     Parameters
     ----------
-    dic : dictionary 
+    input_dict : dictionary
         key: -
         value : list - a list of scalars
 
@@ -52,14 +53,14 @@ def normalise_dict(input_dict, factor):
 
     Returns
     -------
-    output_dict : dict 
+    output_dict : dict
         key: str - same key as the input dictionary
         value : list - a list of scalars obtained by dividing the input values by the factor
-    
+
     """
 
-    output_dict = input_dict
-    for key, value in output_dict.items():
+    output_dict = {}
+    for key, value in input_dict.items():
         if factor == 'max':
             output_dict[key] = [float(i)/max(value) for i in value]
         else:
@@ -83,7 +84,7 @@ def key_to_coordinates(key):
     Returns
     -------
     coord : tuple - XYZ coordinates of a point in 3D space
-        
+
     """
     stripkey = key.strip("(").strip(")").split(", ")
     point_coordinates = tuple(float(elem) for elem in stripkey)
@@ -101,7 +102,7 @@ def get_test_key(points_history): # TODO: remove after development
     Returns
     -------
     random_key : variable - a key in the dictionary
-        
+
     """
 
     import random
@@ -126,7 +127,7 @@ def read_json(file):
     Returns
     -------
     data : dictionnary with data formatted into keys and values
-        
+
     """
 
     with open(file, 'r') as fp:
@@ -134,12 +135,30 @@ def read_json(file):
     return data
 
 
+def combine_dict_in_json(dict_list, destination, json_name):
+    """
+    Combines the values of a list of dictionaries in a single json file
+
+    Parameters
+    ----------
+    dict_list : list of dict - dictionaries to combine (note: the dictionaries must have the same keys)
+    destination : str - path where to save the json file.
+    json_name - str - name of the file (example_name)
+
+    """
+    new_dict = {}
+    for k in dict_list[0].keys():
+        new_dict[k] = tuple(new_dict[k] for new_dict in dict_list)
+
+    with open(destination + '/' + json_name + '.json', 'w') as fp:
+        json.dump(new_dict, fp, indent=1)
+
+
 # ******************************************************************************
 #   Visualization
 # ******************************************************************************
 
 def ratio_to_rgb(ratio):
-
     """
     Converts a ratio between 0 and 1 into an rgb color
 
@@ -149,8 +168,7 @@ def ratio_to_rgb(ratio):
 
     Returns
     -------
-    rgb : tuple - rgb color 
-    
+    rgb : tuple - rgb color
     """
     b = 0
     if round(ratio, 1) == 0.5:
@@ -166,15 +184,29 @@ def ratio_to_rgb(ratio):
 
     return rgb
 
+
 # ******************************************************************************
 #   Main
 # ******************************************************************************
 
-if __name__ == "__main__":
-    
-    import compas_testing
-    from compas_testing.helpers import normalise_dict
 
-    d = {'a':[0, 10, 5.2, 4], 'b':[2,4,6,1,15.3]}
-    dn = normalise_dict(d, 'max')
-    print(dn)
+if __name__ == "__main__":
+    # pass
+    import os
+    from compas_testing.helpers import normalise_dict
+    from compas_testing.helpers import read_json
+    from compas_testing.helpers import combine_dict_in_json
+    HERE = os.path.dirname(__file__)
+
+    HOME = os.path.abspath(os.path.join(HERE, "../../../"))
+    DATA = os.path.abspath(os.path.join(HOME, "data"))
+    DOCS = os.path.abspath(os.path.join(HOME, "docs"))
+    TEMP = os.path.abspath(os.path.join(HOME, "temp"))
+
+    input_file = DATA + '/GOM_output/points_history_c0_dist.json'
+    distances_data = read_json(input_file)
+    dn = normalise_dict(distances_data, 'max')
+    rgb_values = []
+    for key, value in dn.items():
+        rgb_values.append(ratio_to_rgb(value))
+    print(rgb_values)

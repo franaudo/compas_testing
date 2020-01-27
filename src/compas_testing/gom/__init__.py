@@ -25,7 +25,7 @@ Clean Results
 .. autosummary::
     :toctree: generated/
     :nosignatures:
-    
+
     find_corrupted_stages
     find_corrupted_points
     remove_points_from_results
@@ -40,23 +40,11 @@ Evaluate Results
 
     find_abs_max_displacement
     evaluate_displacements
-    
+    evaluate_color_map
 
-Plot in rhino
-=============
-
-.. autosummary::
-    :toctree: generated/
-    :nosignatures:
-
-    draw_stages_colour
-    draw_stages
-    point_trajectory
-    find_rhpoint_key
 """
 
-from .in_out import *
-from .rhino import *
+from .convert import *
 from .clean import *
 from .evaluate import *
 
