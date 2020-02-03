@@ -8,12 +8,13 @@ __email__      = 'ranaudo@arch.ethz.ch'
 
 
 __all__ = ['double_punch',
+           'compute_stress_strain'
            ]
 
 
 def double_punch(Ncr, D, h, p=37.5):
     """
-    Converts the results of double punch test of a concrete cube to the corresponding tension capacity.
+    Converts the results of a double punch test of a concrete cube to the corresponding tension capacity.
 
     Parameters
     ----------
@@ -32,6 +33,29 @@ def double_punch(Ncr, D, h, p=37.5):
     """
     fct = 4*10**3*Ncr / (math.pi*(2.4*D*h-p**2))
     return fct
+
+
+def compute_stress_strain(pd_data):
+    """
+    Converts the results of a compression test of a concrete cube to the corresponding stress-strain curve.
+
+    Parameters
+    ----------
+    pd_data: pandas dataframe - dataframe containing the results of the test
+    
+
+    Returns
+    -------
+    pd_data : pandas dataframe - dataframe containing the results of the test with additional columns
+    for strees and strain
+
+    """
+    # pd_data['Stress'] = pd_data['Forc']
+    
+    # sigma = force/area
+    # epsilon = deformation/height
+    # return 
+    pass
 
 
 # ******************************************************************************

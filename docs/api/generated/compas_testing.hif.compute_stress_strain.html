@@ -9,21 +9,21 @@
     <meta name="author" content="" />
     <meta name="description" content="" />
 
-    <link rel="shortcut icon" href="_static/images/compas.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../_static/images/compas.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="_static/css/prism.css" /> -->
-    <link rel="stylesheet" type="text/css" href="_static/css/compas.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/compas-reference.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../../_static/css/prism.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../_static/css/compas.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="Getting Started" href="gettingstarted.html" />
+        <link rel="next" title="plot_material_results" href="compas_testing.hif.plot_material_results.html" />
     
     
     
-        <link rel="prev" title="compas_testing" href="index.html" />
+        <link rel="prev" title="double_punch" href="compas_testing.hif.double_punch.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -34,11 +34,11 @@
 
     <nav class="navbar navbar-expand compas-navbar">
         <a class="navbar-brand" href="/">
-            <img src="_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
+            <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
         </a>
 
         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="index.html">compas_testing</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../index.html">compas_testing</a></li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
@@ -56,37 +56,26 @@
 
                     
 
-                    <div class="section" id="introduction">
-<h1>Introduction</h1>
-<a class="reference internal image-reference" href="_images/cover.jpg"><img alt="_images/cover.jpg" src="_images/cover.jpg" style="width: 100%;" /></a>
-<div class="section" id="about">
-<h2>About</h2>
-<p><code class="docutils literal notranslate"><span class="pre">compas_testing</span></code> is a collection of resoruces for converting, analyse and visualise testing data. It is part of the
-<a class="reference external" href="https://compas-dev.github.io/">COMPAS</a> framework.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div>
-<hr class="docutils" />
-<div class="section" id="general-functions">
-<h2>General functions</h2>
-<p>The functionalities so far implemented include:</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><strong>1. GOM</strong></p>
-<p>Functions to ease the post-processing work of GOM point clouds data. Thanks to this set of funcitons, it is possible to reduce
-the time spent in the GOM PONTOS software and automatise most of the tedious tasks to identify points among stages. It also enhance
-the visualization possibilities using Rhino and Blender CAD environments.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><strong>2. HIF</strong></p>
-<p>Custom made functions to post-process the results of the the testing machines in the HIF Halle.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div>
+                    <div class="detail section" id="compute-stress-strain">
+<h1>compute_stress_strain</h1>
+<dl class="function">
+<dt id="compas_testing.hif.compute_stress_strain">
+<code class="sig-prename descclassname">compas_testing.hif.</code><code class="sig-name descname">compute_stress_strain</code><span class="sig-paren">(</span><em class="sig-param">pd_data</em><span class="sig-paren">)</span></dt>
+<dd><p>Converts the results of a compression test of a concrete cube to the corresponding stress-strain curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pd_data</strong> (<em>pandas dataframe - dataframe containing the results of the test</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>pd_data</strong> (<em>pandas dataframe - dataframe containing the results of the test with additional columns</em>)</p></li>
+<li><p><em>for strees and strain</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
                     
@@ -99,7 +88,7 @@ the visualization possibilities using Rhino and Blender CAD environments.</p>
             <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
                 <div class="navbar-light">
 
-                    <form id="" class="d-flex compas-searchbox" action="search.html" method="get">
+                    <form id="" class="d-flex compas-searchbox" action="../../search.html" method="get">
                         <input class="form-control" type="text" name="q" placeholder="Search docs" />
                         <input type="hidden" name="check_keywords" value="yes" />
                         <input type="hidden" name="area" value="default" />
@@ -116,11 +105,20 @@ the visualization possibilities using Rhino and Blender CAD environments.</p>
                             <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
 
                             <ul class="nav flex-column active">
-<li class="nav-item active"><a class="nav-link active current reference internal" href="#">Introduction</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="gettingstarted.html">Getting Started</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="examples.html">Examples</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="api.html">API Reference</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="license.html">License</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../intro.html">Introduction</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../gettingstarted.html">Getting Started</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav active">
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.html">compas_testing</a><ul class="nav active">
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.gom.html">compas_testing.gom</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_testing.hif.html">compas_testing.hif</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.helpers.html">compas_testing.helpers</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_testing.rhino.html">compas_testing.rhino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../license.html">License</a></li>
 </ul>
 
 
@@ -139,11 +137,7 @@ the visualization possibilities using Rhino and Blender CAD environments.</p>
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">Introduction</a><ul class="nav">
-<li class="nav-item"><a class="nav-link reference internal" href="#about">About</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#general-functions">General functions</a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">compute_stress_strain</a></li>
 </ul>
 
 
@@ -183,10 +177,10 @@ the visualization possibilities using Rhino and Blender CAD environments.</p>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
 
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/js/searchtools_.js"></script>
-        <!-- <script src="_static/js/prism.js"></script> -->
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/searchtools_.js"></script>
+        <!-- <script src="../../_static/js/prism.js"></script> -->
 
         <script>
         $(document).ready(function() {

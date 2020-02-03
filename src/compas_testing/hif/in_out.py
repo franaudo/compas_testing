@@ -96,8 +96,11 @@ def parse_spider_results(input_file):
 if __name__ == "__main__":
     import os
 
-    input_file = DATA + '\\cubes_results\\Compressive_Strength.txt'
-    [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='compression')
+    from compas_testing import DATA
+    from compas_testing.hif import parse_material_results
+
+    input_file = DATA + '/cubes_results/Compressive_Strength.txt'
+    [my_info, my_data, my_pd_data, my_test_summary] = parse_material_results(input_file, type='compression')
     # input_file = DATA + '\\cubes_results\\Double_Punch.txt'
     # [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='double punch')
     # # print(my_pd_data)
@@ -106,3 +109,4 @@ if __name__ == "__main__":
     # print(my_fct)
     # pdf = my_pd_data[0].cumsum()
     pdf = my_pd_data[0]
+    print(pdf)
