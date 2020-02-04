@@ -18,10 +18,21 @@ __all__ = ['plot_material_results',
 
 
 def plot_material_results(my_pd_data):
-    pdf = my_pd_data[0]
-    pdf.plot(x ='Extern [mm]', y='Force [kN]', kind = 'scatter')
+    i   =   0
+    fig, axs = plt.subplots(1, 3, constrained_layout=True)
+    fig.suptitle('Compression tests', fontsize = 16)
+    for pdf in my_pd_data:
+        pdf.plot(x ='Extern [mm]', y='Force [kN]', ax=axs[i], kind = 'line')
+        pdf.plot(x ='Def. 2A [mm]', y='Force [kN]', ax=axs[i], kind = 'line')
+        pdf.plot(x ='Def. 2B [mm]', y='Force [kN]', ax=axs[i], kind = 'line')    
+        pdf.plot(x ='Def. 2C [mm]', y='Force [kN]', ax=axs[i], kind = 'line')
+        axs[i].legend(["Extern", "A", "B", "C"])
+        axs[i].set_title('Cube_'+str(i+1))
+        axs[i].set_xlabel('Defromation [mm]')
+        axs[i].set_ylabel('Force [kN]')
+        axs[i].set_ylim(0,1000)
+        i += 1
     plt.show()
-    pass
 
 
 def plot_forces(pdf):
@@ -87,24 +98,27 @@ def plot_deformations(pdf):
 # ******************************************************************************
 
 if __name__ == "__main__":
-    import os
-    
-    input_file = DATA + '\\cubes_results\\Compressive_Strength.txt'
-    [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='compression')
-    # input_file = DATA + '\\cubes_results\\Double_Punch.txt'
-    # [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='double punch')
+    from compas_testing import DATA
+    from compas_testing.hif import parse_material_results
+    from compas_testing.hif import plot_material_results
+
+    input_file = DATA + '/cubes_results/Compressive_Strength.txt'
+    [my_info, my_data, my_pd_data, my_test_summary] = parse_material_results(input_file, type='compression')
+    # # input_file = DATA + '\\cubes_results\\Double_Punch.txt'
+    # # [my_info, my_data, my_pd_data, my_test_summary] = parse_results(input_file, type='double punch')
+    # # # print(my_pd_data)
     # # print(my_pd_data)
-    # print(my_pd_data)
-    # my_fct = double_pounch(124.3, 150, 150)
-    # print(my_fct)
-    # pdf = my_pd_data[0].cumsum()
-    pdf = my_pd_data[0]
-    fig, ax = plt.subplots()
-    pdf.plot(x ='Extern [mm]', y='Force [kN]', ax=ax, kind = 'line')
-    pdf.plot(x ='Def. 2A [mm]', y='Force [kN]', ax=ax, kind = 'line')
-    pdf.plot(x ='Def. 2B [mm]', y='Force [kN]', ax=ax, kind = 'line')    
-    pdf.plot(x ='Def. 2C [mm]', y='Force [kN]', ax=ax, kind = 'line')
-    ax.set_title = ("Deformation [mm]")
+    # # my_fct = double_pounch(124.3, 150, 150)
+    # # print(my_fct)
+    # # pdf = my_pd_data[0].cumsum()
+    # pdf = my_pd_data[0]
+    # fig, ax = plt.subplots()
+    # pdf.plot(x ='Extern [mm]', y='Force [kN]', ax=ax, kind = 'line')
+    # pdf.plot(x ='Def. 2A [mm]', y='Force [kN]', ax=ax, kind = 'line')
+    # pdf.plot(x ='Def. 2B [mm]', y='Force [kN]', ax=ax, kind = 'line')    
+    # pdf.plot(x ='Def. 2C [mm]', y='Force [kN]', ax=ax, kind = 'line')
+    # ax.set_title = ("Deformation [mm]")
     # with sns.axes_style('white'):
     #     sns.kdeplot(data=pdf['Force [kN]'], shade=True)
-    plt.show()
+
+    plot_material_results(my_pd_data)

@@ -24,6 +24,7 @@ Evaluate
     :nosignatures:
 
     double_punch
+    compute_stress_strain
 
 
 Plot Results
