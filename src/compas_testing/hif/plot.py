@@ -17,11 +17,22 @@ __all__ = ['plot_material_results',
            ]
 
 
-def plot_material_results(my_pd_data):
+def plot_material_results(pd_data):
+    """
+    Plots the restults of a compression test on concrete cubes/cylinders.
+
+    Parameters
+    ----------
+    pd_data: panda dataframe with the results
+
+    Returns
+    -------
+
+    """
     i   =   0
     fig, axs = plt.subplots(1, 3, constrained_layout=True)
     fig.suptitle('Compression tests', fontsize = 16)
-    for pdf in my_pd_data:
+    for pdf in pd_data:
         pdf.plot(x ='Extern [mm]', y='Force [kN]', ax=axs[i], kind = 'line')
         pdf.plot(x ='Def. 2A [mm]', y='Force [kN]', ax=axs[i], kind = 'line')
         pdf.plot(x ='Def. 2B [mm]', y='Force [kN]', ax=axs[i], kind = 'line')    
@@ -30,33 +41,59 @@ def plot_material_results(my_pd_data):
         axs[i].set_title('Cube_'+str(i+1))
         axs[i].set_xlabel('Defromation [mm]')
         axs[i].set_ylabel('Force [kN]')
-        axs[i].set_ylim(0,1000)
+        axs[i].set_ylim(0, 1000)
         i += 1
     plt.show()
 
 
+def plot_spider_results(pdf):
+    """
+    Plots the restults of a test on the strong beam.
+
+    Parameters
+    ----------
+    pd_data: panda dataframe with the results
+
+    Returns
+    -------
+
+    """
+    fig, axs = plt.subplots(2, 1, constrained_layout=True)
+    fig.suptitle('Force - Displacement', fontsize = 16)
+    pdf.plot(y='Total Applied Force', x='LVDT_ne CH=7', ax=axs[1], kind = 'line')
+    pdf.plot(y='Total Applied Force', x='LVDT_nw CH=8', ax=axs[1], kind = 'line')
+    pdf.plot(y='Total Applied Force', x='LVDT__me CH=11', ax=axs[1], kind = 'line')
+    pdf.plot(y='Total Applied Force', x='LVDT__mw CH=12', ax=axs[1], kind = 'line')
+    pdf.plot(y='Total Applied Force', x='LVDT__se CH=13', ax=axs[1], kind = 'line')
+    pdf.plot(y='Total Applied Force', x='LVDT__sw CH=14', ax=axs[1], kind = 'line')
+
+    pass
+
+
 def plot_forces(pdf):
-    fig, axs = plt.subplots(3, 1, constrained_layout=True)
+
+    fig, axs = plt.subplots(2, 1, constrained_layout=True)
     fig.suptitle('Force vs. Time', fontsize = 16)
 
     pdf.plot(x ='Time  1 - default sample rate CH=1', y='Pressure CH=2', ax=axs[0], kind = 'line')
     axs[0].set_title('Applied Pressure')
     axs[0].set_xlabel('Time [s]')
     axs[0].set_ylabel('Pressure [bar]')
+    axs[0].set_xlim(0, 1500)
 
-    pdf.plot(x ='Time  1 - default sample rate CH=1', y='Total Applied Force', ax=axs[1], kind = 'line')
+    # pdf.plot(x ='Time  1 - default sample rate CH=1', y='Total Applied Force', ax=axs[1], kind = 'line')
     pdf.plot(x ='Time  1 - default sample rate CH=1', y='Total Ties Tension', ax=axs[1], kind = 'line')
-    axs[1].set_title('Total Forces')
+    axs[1].set_title('Ties additional tension')
     axs[1].set_xlabel('Time [s]')
-    axs[1].set_ylabel('Force [kN]')
-
-    pdf.plot(x ='Time  1 - default sample rate CH=1', y='Force_south CH=3', ax=axs[2], kind = 'line')
-    pdf.plot(x ='Time  1 - default sample rate CH=1', y='Force_north CH=4', ax=axs[2], kind = 'line')
-    pdf.plot(x ='Time  1 - default sample rate CH=1', y='TR_south CH=5', ax=axs[2], kind = 'line')
-    pdf.plot(x ='Time  1 - default sample rate CH=1', y='TR_north CH=6', ax=axs[2], kind = 'line')
-    axs[2].set_title('Individual sensors')
-    axs[2].set_xlabel('Time [s]')
-    axs[2].set_ylabel('Force [kN]')
+    axs[1].set_ylabel('Force [N]')
+    axs[1].set_xlim(0, 1500)
+    # pdf.plot(x ='Time  1 - default sample rate CH=1', y='Force_south CH=3', ax=axs[2], kind = 'line')
+    # pdf.plot(x ='Time  1 - default sample rate CH=1', y='Force_north CH=4', ax=axs[2], kind = 'line')
+    # pdf.plot(x ='Time  1 - default sample rate CH=1', y='TR_south CH=5', ax=axs[2], kind = 'line')
+    # pdf.plot(x ='Time  1 - default sample rate CH=1', y='TR_north CH=6', ax=axs[2], kind = 'line')
+    # axs[2].set_title('Individual sensors')
+    # axs[2].set_xlabel('Time [s]')
+    # axs[2].set_ylabel('Force [kN]')
 
     plt.show()
 
@@ -75,6 +112,9 @@ def plot_deformations(pdf):
     axs[0].set_title('LVDT Response')
     axs[0].set_xlabel('Time [s]')
     axs[0].set_ylabel('Displacement [mm]')
+    axs[0].legend(["LVDT_NE", "LVDT_NW", "LVDT__ME", "LVDT__MW", "LVDT__SE", "LVDT__SW"])
+    axs[0].set_xlim(0, 1500)
+
 
     pdf.plot(y='Total Applied Force', x='LVDT_ne CH=7', ax=axs[1], kind = 'line')
     pdf.plot(y='Total Applied Force', x='LVDT_nw CH=8', ax=axs[1], kind = 'line')
@@ -89,8 +129,11 @@ def plot_deformations(pdf):
     # axs[1].set_xlim(-35,0)
     axs[1].invert_xaxis()
     axs[1].invert_yaxis()
+    axs[1].legend(["LVDT_NE", "LVDT_NW", "LVDT__ME", "LVDT__MW", "LVDT__SE", "LVDT__SW"])
+    
 
     plt.show()
+
 
 
 # ******************************************************************************
